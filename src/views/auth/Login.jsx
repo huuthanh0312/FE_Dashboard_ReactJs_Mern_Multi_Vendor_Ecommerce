@@ -24,7 +24,7 @@ const Login = () => {
     <div className='min-w-screen min-h-screen bg-[#f4f4f5] flex justify-center items-center '>
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div
-          className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-sky-200 shadow-lg transform skew-y-0 -rotate-6 rounded-2xl">
+          className='absolute inset-0 bg-gradient-to-r from-cyan-500 to-sky-200 shadow-lg transform skew-y-0 -rotate-6 rounded-2xl'>
         </div>
         <div className='w-[360px] relative text-black p-1 border-slate-500'>
           <div className='bg-[#ffffff] p-4 rounded-2xl shadow-lg shadow-blue-400 mx-auto'>
@@ -65,8 +65,8 @@ const Login = () => {
                   justify-center cursor-pointer items-center overflow-hidden border border-black">
                   <span><FaGoogle className=' text-black' /></span>
                 </div>
-                <div className="w-[135px] h-[35px] flex rounded-md bg-blue-700 shadow-lg hover:shadow-sky-700/50
-                  justify-center cursor-pointer items-center overflow-hidden">
+                <div className='w-[135px] h-[35px] flex rounded-md bg-blue-700 shadow-lg hover:shadow-sky-700/50
+                  justify-center cursor-pointer items-center overflow-hidden'>
                   <span><FaFacebook className='text-white' /></span>
                 </div>
               </div>
@@ -74,7 +74,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
 
   );
 };
