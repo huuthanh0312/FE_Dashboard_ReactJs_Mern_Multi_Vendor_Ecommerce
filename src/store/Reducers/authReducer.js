@@ -46,7 +46,7 @@ export const authReducer = createSlice({
       })
       .addCase(admin_login.fulfilled, (state, { payload }) => {   // get status and data BE success 200
         state.loader = false;
-        state.successMessage = payload.data.message
+        state.successMessage = payload.message
         console.log(payload)
       })
   }
