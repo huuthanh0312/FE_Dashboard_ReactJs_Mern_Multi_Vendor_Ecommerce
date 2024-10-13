@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaList } from 'react-icons/fa'
 
 const Header = ({ showSidebar, setShowSidebar }) => {
+  const [sticky, setSticky] = useState(false)
+  //handle scroll function
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY
+      if (offset > 0) {
+        setSticky(true)
+      } else {
+        setSticky(false)
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
   return (
-    <div className="fixed top-0 left-0 w-full py-2 px-2 lg:px-5 z-40">
-      <div className="ml-0 lg:ml-[260px] rounded-md shadow-md shadow-slate-400 h-[55px] flex justify-between items-center bg-white px-5 transition-all">
+    //fixed top-0 left-0 w-full
+    <div
+      className={`fixed top-0 left-0 w-full z-40 mx-auto 
+						${
+              sticky
+                ? 'p-[7px] shadow-lg transition-all duration-300 bg-white hover:shadow-indigo-200'
+                : 'py-2 px-2 md:px-5 z-40 transition-all duration-300'
+            }`}
+    >
+      <div
+        className={`ml-0 lg:ml-[260px] h-[55px] flex justify-between items-center bg-white px-5 transition-all  ${
+          sticky ? '' : 'rounded-md shadow-md hover:shadow-indigo-200'
+        }`}
+      >
         <div
           onClick={() => setShowSidebar(!showSidebar)}
           className="w-9 h-9 flex lg:hidden rounded-md border-1 shadow-md shadow-gray-400 hover:shadow-gray-500 justify-center items-center cursor-pointer"
@@ -17,7 +45,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
         <div className="hidden md:block">
           <input
             type="text"
-            className="px-3 py-2 outline-none border shadow-sm bg-transparent border-slate-800 rounded-md text-gray-600 focus:border-indigo-300 overflow-hidden"
+            className="px-3 py-2 outline-none border shadow-sm bg-transparent rounded-md text-gray-600 border-sky-700 focus:border-indigo-300 overflow-hidden"
             name="search"
             placeholder="search"
           />
@@ -31,7 +59,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
                 <span className="text-[14px] w-full font-normal"> Admin</span>
               </div>
               <img
-                className="w-[45px] h-p45px]"
+                className="w-[45px] h-p45px] border-2 border-sky-700 rounded-full"
                 src="http://localhost:3000/images/admin.png"
                 alt=""
               />
