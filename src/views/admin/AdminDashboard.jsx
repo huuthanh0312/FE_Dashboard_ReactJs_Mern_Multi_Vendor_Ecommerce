@@ -140,11 +140,11 @@ const AdminDashboard = () => {
           </div>
           <div className="w-full lg:w-5/12 py-6 lg:py-0 ">
             <div className="w-full bg-white p-4 shadow-lg rounded-md hover:shadow-indigo-200">
-              <div className="flex justify-between items-center pb-3 text-lg font-semibold text-[#383737] border-b-2">
+              <div className="flex justify-between items-center pb-3 text-lg font-semibold text-[#383737] ">
                 <h2 className="">Recent Seller Message</h2>
                 <Link className="">View All</Link>
               </div>
-              <div className="flex flex-col gap-2 pt-6 text-[#383737] ">
+              <div className="flex flex-col gap-2 pt-6 text-[#383737] bg-[#E5E5E5] p-4 rounded-md">
                 <ol className="relative border-1 border-slate-600 ml-4">
                   <li className="mb-3 ml-6">
                     <div className="flex absolute -left-5 shadow-lg justify-center items-center w-10 h-10 p-[2px] bg-[#4c7fe2] rounded-full z-10">
@@ -206,14 +206,14 @@ const AdminDashboard = () => {
           </div>
         </div>
         {/*  */}
-        <div className="w-full p-4 bg-white shadow-lg rounded-md text-[#383737]">
+        <div className="w-full p-4 bg-white shadow-lg rounded-md text-[#383737] hover:shadow-indigo-200">
           <div className="flex justify-between items-center pb-3 text-lg font-semibold">
             <h2 className="pb-3 text-lg">Recent Orders</h2>
             <Link className="">View All</Link>
           </div>
-          <div className="relative overflow-x-auto">
+          <div className="relative overflow-x-auto bg-[#E5E5E5] rounded-md shadow-md">
             <table className="w-full text-sm text-left">
-              <thead className="uppercase border-b border-slate-700">
+              <thead className="uppercase border-b border-slate-500">
                 <tr>
                   <th className="py-3 px-4" scope="col">
                     Order Id
@@ -234,7 +234,7 @@ const AdminDashboard = () => {
               </thead>
               <tbody>
                 {[1, 2, 3, 4, 5].map((d, i) => (
-                  <tr>
+                  <tr className="hover:bg-gray-100">
                     <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
                       #343444
                     </td>
