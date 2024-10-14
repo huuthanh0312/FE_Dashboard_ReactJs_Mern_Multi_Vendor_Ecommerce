@@ -89,9 +89,9 @@ const AdminDashboard = () => {
   }
   return (
     <div>
-      <div className="px-2 md:px-5">
+      <div className="px-2 pb-6 md:px-5">
         {/*  */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-7">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-3xl font-bold">$3434</h2>
@@ -203,6 +203,57 @@ const AdminDashboard = () => {
                 </ol>
               </div>
             </div>
+          </div>
+        </div>
+        {/*  */}
+        <div className="w-full p-4 bg-white shadow-lg rounded-md text-[#383737]">
+          <div className="flex justify-between items-center pb-3 text-lg font-semibold">
+            <h2 className="pb-3 text-lg">Recent Orders</h2>
+            <Link className="">View All</Link>
+          </div>
+          <div className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="uppercase border-b border-slate-700">
+                <tr>
+                  <th className="py-3 px-4" scope="col">
+                    Order Id
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Price
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Payment Status
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Order Status
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Active
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[1, 2, 3, 4, 5].map((d, i) => (
+                  <tr>
+                    <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
+                      #343444
+                    </td>
+                    <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
+                      $454
+                    </td>
+                    <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
+                      Peding
+                    </td>
+                    <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
+                      Sasadd
+                    </td>
+                    <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
+                      <Link>view</Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
