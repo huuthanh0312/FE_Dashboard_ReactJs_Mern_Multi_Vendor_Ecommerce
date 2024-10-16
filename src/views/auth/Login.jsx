@@ -23,9 +23,9 @@ const Login = () => {
   return (
     <div className="min-w-screen min-h-screen bg-[#f4f4f5] flex justify-center items-center ">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-sky-200 shadow-lg transform skew-y-0 -rotate-6 rounded-2xl"></div>
+        <div className="absolute inset-1 bg-gradient-to-r from-indigo-500 to-sky-200 shadow-lg transform skew-y-4 -rotate-6 rounded-3xl"></div>
         <div className="w-[360px] relative text-black p-1 border-slate-500">
-          <div className="bg-[#ffffff] p-4 rounded-2xl shadow-lg shadow-blue-400 mx-auto">
+          <div className="bg-[#ffffff] p-4 rounded-3xl shadow-md shadow-blue-400 mx-auto">
             <h2 className="text-2xl font-bold text-center mb-2">Thanh Shop Login ! 👋</h2>
             <div className="text-center">
               <span className="mb-2 font-semibold">Welcome to Ecommerce</span>

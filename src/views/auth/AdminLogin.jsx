@@ -62,15 +62,15 @@ const AdminLogin = () => {
   return (
     <div className="min-w-screen min-h-screen bg-[#f4f4f5] flex justify-center items-center">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-200 to-sky-500 shadow-lg transform skew-y-0 -rotate-6 rounded-2xl"></div>
-        <div className="w-[360px] relative text-black p-1 ">
-          <div className="bg-[#f4f4f5] p-4 border-2 border-blue-500 rounded-2xl shadow-lg shadow-blue-400 mx-auto">
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-sky-200 shadow-lg transform skew-y-0 -rotate-6 rounded-3xl"></div>
+        <div className="w-[360px] relative text-black ">
+          <div className="bg-[#f4f4f5] p-4 rounded-3xl shadow-lg shadow-blue-400 mx-auto">
             <div className="h-[70px] flex justify-center items-center">
               <div className="w-[180px] h-[50px]">
                 <img src="/images/logo.png" className="w-full h-full" alt="" />
               </div>
             </div>
-            <h3 className="font-semibold text-lg text-center">👋</h3>
+            <h3 className="font-semibold text-lg text-center">Admin 👋</h3>
             <form onSubmit={submit}>
               <div className="flex flex-col w-full gap-1 mb-3 relative">
                 <label htmlFor="email">Email</label>
