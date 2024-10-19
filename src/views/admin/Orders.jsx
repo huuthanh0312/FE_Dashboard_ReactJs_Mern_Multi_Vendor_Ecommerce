@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { LuArrowDownSquare } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
+import Pagination from '../Pagination'
 
 const Orders = () => {
   //pagination
@@ -17,7 +18,7 @@ const Orders = () => {
             onChange={(e) => {
               setParPage(parseInt(e.target.value))
             }}
-            className="px-4 py-2 hover:border-indigo-500 outline-none bg-[#E5E5E5] border border-slate-700 rounded-md text-black "
+            className="px-4 py-2 hover:border-indigo-500 outline-none border border-gray-400 rounded-md text-black shadow-md focus:shadow-indigo-200"
           >
             <option value="5">5</option>
             <option value="10">10</option>
@@ -25,10 +26,11 @@ const Orders = () => {
           </select>
           <input
             type="text"
-            className="px-4 py-2 focus:border-indigo-500 outline-none bg-[#E5E5E5] text-[#383737] border border-slate-700 rounded-md "
+            className="px-4 py-2 hover:border-indigo-500 focus:border-indigo-500 outline-none text-[#383737] border border-gray-400 rounded-md shadow-md focus:shadow-indigo-200"
             placeholder="search"
           />
         </div>
+        {/* table */}
         <div className="relative mt-5 overflow-x-auto pb-1 ">
           <div className="w-full text-sm text-left ">
             <div className="text-sm text-[#383737] uppercase bg-[#E5E5E5] border-1 px-2">
@@ -45,11 +47,11 @@ const Orders = () => {
             </div>
             {/* body table */}
             <div
-              className={`text-[#383737] px-2 bg-gray-100
+              className={`text-[#383737] bg-gray-100
 						${
               show
-                ? 'shadow-lg border-r border-l-[4px] border-l-[#3b82f6] text-blue-500 '
-                : 'border border-1'
+                ? 'shadow-lg border-r px-1 border-l-4 border-l-[#3b82f6] text-blue-500'
+                : 'border border-1 px-2 hover:text-blue-500'
             }`}
             >
               <div className="flex justify-center items-start font-medium ">
@@ -89,6 +91,24 @@ const Orders = () => {
             </div>
           </div>
         </div>
+        {/* end table */}
+        {/* Paginantion */}
+        <div className="flex w-full justify-between items-center mt-2">
+          <span className="text-sm text-gray-700 dark:text-gray-400">
+            Showing <span className="font-semibold text-gray-900 dark:text-white">1</span> to{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">10</span> of{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">100</span> Entries
+          </span>
+          <Pagination
+            pageNumber={currentPage}
+            setPageNumber={setCurrentPage}
+            totalItem={50}
+            parPage={parPage}
+            showItem={3}
+          />
+        </div>
+
+        {/* end Paginantion */}
       </div>
     </div>
   )
