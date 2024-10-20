@@ -1,0 +1,134 @@
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import Pagination from '../Pagination'
+import { FaEdit, FaEye, FaImage, FaTrash } from 'react-icons/fa'
+import { IoMdCloseCircle } from 'react-icons/io'
+const Sellers = () => {
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1)
+  const [searchValue, setsearchValue] = useState('')
+  const [parPage, setParPage] = useState(5)
+  const [show, setShow] = useState(false)
+  return (
+    <div className="px-2 lg:px-5 pb-5 ">
+      <div className="w-full flex flex-wrap ">
+        <div className="w-full p-4 rounded-md shadow-md hover:shadow-indigo-200 bg-white">
+          <div className="flex justify-between items-center">
+            <select
+              onChange={(e) => {
+                setParPage(parseInt(e.target.value))
+              }}
+              className="px-4 py-2 hover:border-indigo-500 outline-none border border-gray-400 rounded-md text-black shadow-md focus:shadow-indigo-200"
+            >
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+            <input
+              type="text"
+              className="px-4 py-2 hover:border-indigo-500 focus:border-indigo-500 outline-none text-[#383737] border border-gray-400 rounded-md shadow-md focus:shadow-indigo-200"
+              placeholder="search"
+            />
+          </div>
+          {/* table */}
+          <div className="relative overflow-x-auto pt-4 ">
+            <table className="w-full text-sm text-left rounded-md shadow-md">
+              <thead className="uppercase border bg-[#E5E5E5]">
+                <tr>
+                  <th className="py-3 px-4" scope="col">
+                    No
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Image
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Name
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Shop Name
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Payment Status
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Email
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Devision
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    District
+                  </th>
+                  <th className="py-3 px-4" scope="col">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[1, 2, 3, 4, 5].map((d, i) => (
+                  <tr className="hover:bg-gray-100 border">
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      {d}
+                    </td>
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      <img
+                        className="w-[45px] h-[45px]"
+                        src={`http://localhost:3000/images/category/${d}.jpg`}
+                        alt=""
+                      />
+                    </td>
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      Peding
+                    </td>
+
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      Peding
+                    </td>
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      huuthanhnguyen@gmail.com
+                    </td>
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      Peding
+                    </td>
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      Peding
+                    </td>
+                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                      Peding
+                    </td>
+                    <td scope="row" className="py-1 px-4 whitespace-nowrap">
+                      <div className="flex justify-start items-center gap-4">
+                        <Link className="p-[6px] bg-gray-100 border-2 border-green-500 rounded shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
+                          <FaEye></FaEye>
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/* end table */}
+          {/* Paginantion */}
+          <div className="flex w-full justify-between items-center mt-2 ">
+            <span className="text-sm text-gray-700 dark:text-gray-400">
+              Showing <span className="font-semibold text-gray-900 dark:text-white">1</span> to{' '}
+              <span className="font-semibold text-gray-900 dark:text-white">10</span> of{' '}
+              <span className="font-semibold text-gray-900 dark:text-white">100</span> Entries
+            </span>
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={50}
+              parPage={parPage}
+              showItem={3}
+            />
+          </div>
+          {/* end Paginantion */}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Sellers
