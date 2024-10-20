@@ -47,11 +47,11 @@ const Orders = () => {
             </div>
             {/* body table */}
             <div
-              className={`text-[#383737] bg-gray-100
+              className={`text-[#383737] 
 						${
               show
-                ? 'shadow-lg border-r px-1 border-l-4 border-l-[#3b82f6] text-blue-500'
-                : 'border border-1 px-2 hover:text-blue-500'
+                ? 'shadow-lg border-r px-1 border-l-4 border-l-[#3b82f6] text-blue-500 bg-gray-100'
+                : 'border border-1 px-2 hover:text-blue-500 bg-white'
             }`}
             >
               <div className="flex justify-center items-start font-medium ">

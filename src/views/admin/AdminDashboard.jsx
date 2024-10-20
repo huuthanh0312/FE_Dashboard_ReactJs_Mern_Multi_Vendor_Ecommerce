@@ -211,9 +211,9 @@ const AdminDashboard = () => {
             <h2 className="pb-3 text-lg">Recent Orders</h2>
             <Link className="">View All</Link>
           </div>
-          <div className="relative overflow-x-auto  border-1 rounded-md shadow-md">
+          <div className="relative overflow-x-auto border-1 rounded-md shadow-md">
             <table className="w-full text-sm text-left ">
-              <thead className="uppercase border-b border-1 bg-[#E5E5E5]">
+              <thead className="uppercase border bg-[#E5E5E5]">
                 <tr>
                   <th className="py-3 px-4" scope="col">
                     Order Id
@@ -234,7 +234,7 @@ const AdminDashboard = () => {
               </thead>
               <tbody>
                 {[1, 2, 3, 4, 5].map((d, i) => (
-                  <tr className="hover:bg-gray-100 border-b">
+                  <tr className="hover:bg-gray-100 border">
                     <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
                       #343444
                     </td>
