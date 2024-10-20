@@ -33,7 +33,7 @@ const Orders = () => {
         {/* table */}
         <div className="relative mt-5 overflow-x-auto pb-1 ">
           <div className="w-full text-sm text-left ">
-            <div className="text-sm text-[#383737] uppercase bg-[#E5E5E5] border-1 px-2">
+            <div className="text-sm uppercase bg-[#E5E5E5] border-1 px-2">
               <div className="flex justify-center items-center font-bold">
                 <div className="py-3 w-[25%]">Order id</div>
                 <div className="py-3 w-[13%]">Price</div>

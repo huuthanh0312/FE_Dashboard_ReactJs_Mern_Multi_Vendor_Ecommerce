@@ -13,7 +13,7 @@ const Category = () => {
   return (
     <div className="px-2 lg:px-5 pb-5 ">
       <div className="flex lg:hidden justify-between items-center mb-5 p-4 bg-white rounded-md shadow-md hover:shadow-indigo-200">
-        <h1 className="text-[#383737] font-semibold text-lg">Category</h1>
+        <h1 className="text-[#383737] font-bold text-lg">Category</h1>
         <button
           onClick={() => setShow(true)}
           className="px-4 py-2 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white"
@@ -116,7 +116,7 @@ const Category = () => {
         >
           <div className="w-full pl-5">
             <div className="h-screen lg:h-auto px-4 py-4 rounded-md shadow-md hover:shadow-indigo-200 bg-white">
-              <h1 className="font-semibold text-xl p-2 mb-4 w-full text-center border-b bg-gray-200 uppercase">
+              <h1 className="font-bold text-xl p-2 mb-4 w-full text-center border-b bg-gray-200 uppercase">
                 Add Category
               </h1>
               <div
