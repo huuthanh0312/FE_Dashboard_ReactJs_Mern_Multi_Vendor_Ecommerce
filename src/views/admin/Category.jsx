@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
-import { FaEdit, FaImage, FaTrash } from 'react-icons/fa'
-import { IoMdCloseCircle } from 'react-icons/io'
+import { FaEdit, FaHome, FaImage, FaTrash } from 'react-icons/fa'
+import { IoIosArrowForward, IoMdCloseCircle } from 'react-icons/io'
 
 const Category = () => {
   //pagination
@@ -12,11 +12,31 @@ const Category = () => {
   const [show, setShow] = useState(false)
   return (
     <div className="px-2 lg:px-5 pb-5 ">
-      <div className="flex lg:hidden justify-between items-center mb-5 p-4 bg-white rounded-md shadow-md hover:shadow-indigo-200">
-        <h1 className="text-[#383737] font-bold text-lg">Category</h1>
+      {/*  Breadcrumbs */}
+      <div className="flex justify-start text-center text-[#383737] font-bold items-center px-4 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+        <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <li className="inline-flex items-center">
+            <Link className="inline-flex text-sm font-medium text-gray-700 hover:text-blue-600 ">
+              <FaHome className="w-4 h-4 me-1 pt-[1px]" />
+              Home
+            </Link>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <IoIosArrowForward size={18} className="block mx-1 text-gray-400" />
+              <Link className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 ">
+                Category
+              </Link>
+            </div>
+          </li>
+        </ol>
+      </div>
+      {/* End Breadcrumbs  */}
+      <div className="flex lg:hidden justify-between items-center mb-5 px-4 py-2 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+        <h1 className="text-[#383737] font-bold text-lg uppercase">Category</h1>
         <button
           onClick={() => setShow(true)}
-          className="px-4 py-2 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white"
+          className="px-4 py-1 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white"
         >
           Add
         </button>
@@ -77,10 +97,10 @@ const Category = () => {
                     </td>
                     <td scope="row" className="py-1 px-4 whitespace-nowrap">
                       <div className="flex justify-start items-center gap-4">
-                        <Link className="p-[6px] bg-gray-100 border-2 border-yellow-500 rounded shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
+                        <Link className="p-[6px] bg-gray-100 border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
                           <FaEdit></FaEdit>
                         </Link>
-                        <Link className="p-[6px] border-2 border-red-500 rounded shadow-md hover:shadow-lg hover:text-red-600 hover:shadow-red-500/50 hover:scale-110">
+                        <Link className="p-[6px] border-2 border-red-500 rounded-md shadow-md hover:shadow-lg hover:text-red-600 hover:shadow-red-500/50 hover:scale-110">
                           <FaTrash></FaTrash>
                         </Link>
                       </div>

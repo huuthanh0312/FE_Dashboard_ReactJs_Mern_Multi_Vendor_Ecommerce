@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { LuArrowDownSquare } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
+import { FaHome } from 'react-icons/fa'
+import { IoIosArrowForward } from 'react-icons/io'
 
 const Orders = () => {
   //pagination
@@ -12,6 +14,26 @@ const Orders = () => {
 
   return (
     <div className="px-2 lg:px-5 pb-6 ">
+      {/*  Breadcrumbs */}
+      <div className="flex justify-start text-center text-[#383737] font-bold items-center px-4 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+        <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <li className="inline-flex items-center">
+            <Link className="inline-flex text-sm font-medium text-gray-700 hover:text-blue-600">
+              <FaHome className="w-4 h-4 me-1 pt-[1px]" />
+              Home
+            </Link>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <IoIosArrowForward size={18} className="block mx-1 text-gray-400" />
+              <Link className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2">
+                Orders
+              </Link>
+            </div>
+          </li>
+        </ol>
+      </div>
+      {/* End Breadcrumbs  */}
       <div className="w-full p-4 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <div className="flex justify-between items-center">
           <select
