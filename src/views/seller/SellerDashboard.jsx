@@ -3,12 +3,13 @@ import { FaShoppingCart, FaUser, FaUsers } from 'react-icons/fa'
 import {
   MdCurrencyExchange,
   MdOutlineAddShoppingCart,
-  MdOutlineProductionQuantityLimits
+  MdOutlineProductionQuantityLimits,
+  MdOutlineRemoveShoppingCart
 } from 'react-icons/md'
 import Chart from 'react-apexcharts'
 import { Link } from 'react-router-dom'
 
-const AdminDashboard = () => {
+const SellerDashboard = () => {
   const state = {
     series: [
       {
@@ -117,21 +118,21 @@ const AdminDashboard = () => {
 
           <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
-              <h2 className="text-3xl font-bold">10</h2>
-              <span className="text-md font-medium">Sellers</span>
+              <h2 className="text-3xl font-bold">100</h2>
+              <span className="text-md font-medium">Orders</span>
             </div>
-            <div className="w-[50px] h-[50px] justify-center items-center flex rounded-full border-2 border-rose-500 shadow-lg">
-              <FaUsers size="26px" />
+            <div className="w-[50px] h-[50px] justify-center items-center flex rounded-full border-2 border-green-500 shadow-lg">
+              <MdOutlineAddShoppingCart size="26px" />
             </div>
           </div>
 
           <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
-              <h2 className="text-3xl font-bold">$3434</h2>
-              <span className="text-md font-medium">Orders</span>
+              <h2 className="text-3xl font-bold">4</h2>
+              <span className="text-md font-medium">Pending Orders</span>
             </div>
-            <div className="w-[50px] h-[50px] justify-center items-center flex rounded-full border-2 border-green-500 shadow-lg">
-              <MdOutlineAddShoppingCart size="26px" />
+            <div className="w-[50px] h-[50px] justify-center items-center flex rounded-full border-2 border-red-500 shadow-lg">
+              <MdOutlineRemoveShoppingCart size="26px" />
             </div>
           </div>
         </div>
@@ -145,7 +146,7 @@ const AdminDashboard = () => {
           <div className="w-full lg:w-5/12 py-6 lg:py-0 ">
             <div className="w-full bg-white p-4 shadow-lg rounded-md hover:shadow-indigo-200">
               <div className="flex justify-between items-center pb-3 text-lg font-semibold text-[#383737] ">
-                <h2 className="">Recent Seller Message</h2>
+                <h2 className="">Recent Customer Message</h2>
                 <Link className="">View All</Link>
               </div>
               <div className="flex flex-col gap-2 pt-6 text-[#383737] bg-[#E5E5E5] p-4 rounded-md">
@@ -178,7 +179,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="p-3 bg-gray-300 rounded-lg border border-slate-600 shadow-sm">
                       <div className="flex justify-between items-center mb-2 font-semibold">
-                        <Link className="text-md ">Admin</Link>
+                        <Link className="text-md ">Customers</Link>
                         <time className="mb-1 text-sm sm:order-last">2 day ago</time>
                       </div>
                       <div className="p-2 text-xs font-normal bg-white rounded-lg border border-slate-800">
@@ -196,7 +197,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="p-3 bg-gray-300 rounded-lg border border-slate-600 shadow-sm">
                       <div className="flex justify-between items-center mb-2 font-semibold">
-                        <Link className="text-md ">Admin</Link>
+                        <Link className="text-md ">Seller</Link>
                         <time className="mb-1 text-sm sm:order-last">2 day ago</time>
                       </div>
                       <div className="p-2 text-xs font-normal bg-white rounded-lg border border-slate-800">
@@ -265,4 +266,4 @@ const AdminDashboard = () => {
   )
 }
 
-export default AdminDashboard
+export default SellerDashboard
