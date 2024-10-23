@@ -26,23 +26,23 @@ const SellerDetails = () => {
         </ol>
       </div>
       {/* End Breadcrumbs */}
-      <div className="w-full flex flex-wrap p-4 rounded-md shadow-md hover:shadow-indigo-200 bg-white ">
-        <div className="w-3/12 flex justify-center items-center text-[#383737]">
+      <div className="w-full flex flex-wrap p-5 rounded-md shadow-md hover:shadow-indigo-200 bg-white ">
+        <div className="w-3/12 flex justify-between items-center">
           <div>
             <img
-              src="http://localhost:3000/images/demo.jpg"
-              className="w-full h-full lg:h-[200px] border-2 border-black rounded-md"
+              src="http://localhost:3000/images/admin.jpg"
+              className="w-full h-full lg:h-[278px] border-2 border-black rounded-md"
               alt=""
             />
           </div>
         </div>
         {/*  */}
-        <div className="w-4/12 text-[#383737] px-0 md:px-5">
+        <div className="w-4/12 text-[#383737] px-0 md:px-5 hover:scale-105">
           <div className="flex text-lg uppercase font-bold p-1 border-b-2 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
             <h2>Basic Info</h2>
           </div>
-          <div className="flex flex-col text-sm justify-between gap-2 border p-4 rounded-b-md font-bold">
-            <div className="flex gap-2  ">
+          <div className="flex flex-col text-sm justify-items-center gap-2 border p-4 rounded-b-md font-bold md:h-[240px] shadow-md ">
+            <div className="flex gap-2 ">
               <span>Name: </span>
               <span>Thanh Nguyen</span>
             </div>
@@ -54,7 +54,7 @@ const SellerDetails = () => {
               <span>Role: </span>
               <span>seller</span>
             </div>
-            <div className="flex gap-2 ">
+            <div className="flex gap-2">
               <span>Stats: </span>
               <span>Active</span>
             </div>
@@ -66,11 +66,11 @@ const SellerDetails = () => {
         </div>
         {/* end */}
         {/*  */}
-        <div className="w-5/12 text-[#383737] px-0 md:px-5">
+        <div className="w-5/12 text-[#383737] px-0 hover:scale-105">
           <div className="flex text-lg p-1 font-bold uppercase border-b-2 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
             <h2>Address</h2>
           </div>
-          <div className="flex flex-col text-sm justify-between gap-2 border p-4 rounded-b-md font-bold">
+          <div className="flex flex-col text-sm justify-items-center gap-2 border p-4 rounded-b-md font-bold md:h-[240px] shadow-md ">
             <div className="flex gap-2  ">
               <span>Shop Name: </span>
               <span>Thanh Nguyen</span>
@@ -102,7 +102,7 @@ const SellerDetails = () => {
                 <option value="">Active</option>
                 <option value="">Deactive</option>
               </select>
-              <button className="w-full px-7 py-1.5 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white">
+              <button className="w-full px-12 py-1.5 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white">
                 Submit
               </button>
             </div>

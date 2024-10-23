@@ -55,7 +55,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
                 <span className="text-[14px] w-full font-normal"> Admin</span>
               </div>
               <img
-                className="w-[45px] h-p45px] border-2 border-sky-700 rounded-full"
+                className="w-[45px] h-[45px] border-2 border-sky-700 rounded-full"
                 src="http://localhost:3000/images/admin.png"
                 alt=""
               />

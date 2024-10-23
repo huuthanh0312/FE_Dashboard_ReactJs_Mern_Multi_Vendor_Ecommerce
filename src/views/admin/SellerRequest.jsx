@@ -100,7 +100,7 @@ const SellerRequest = () => {
                     <div className="flex justify-start items-center gap-4">
                       <Link
                         to="/admin/seller/details/:2"
-                        className="p-[6px] bg-gray-100 border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110"
+                        className="p-[6px] bg-gray-100 border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110"
                       >
                         <FaEye></FaEye>
                       </Link>
