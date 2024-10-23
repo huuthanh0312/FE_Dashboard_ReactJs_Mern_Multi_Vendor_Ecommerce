@@ -82,7 +82,7 @@ const Orders = () => {
                 <div className="py-3 w-[18%]">Pending</div>
                 <div className="py-3 w-[18%]">Pending</div>
                 <div className="py-3 w-[18%]">
-                  <Link>View</Link>
+                  <Link to="/admin/order/details/2">View</Link>
                 </div>
                 <div onClick={(e) => setShow(!show)} className="py-3 w-[8%]">
                   <LuArrowDownSquare />
