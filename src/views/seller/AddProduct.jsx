@@ -91,7 +91,10 @@ const AddProduct = () => {
         <div className="flex justify-start text-center text-[#383737] font-bold items-center px-4 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
           <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li className="inline-flex items-center">
-              <Link className="inline-flex text-sm font-medium text-gray-700 hover:text-blue-600">
+              <Link
+                to="/seller/dashboard"
+                className="inline-flex text-sm font-medium text-gray-700 hover:text-blue-600"
+              >
                 <FaHome className="w-4 h-4 me-1 pt-[1px]" />
                 Home
               </Link>

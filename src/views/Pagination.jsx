@@ -46,7 +46,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalItem, parPage, showItem })
         </li>
       )}
       {createButton()}
-      {pageNumber > 1 && (
+      {pageNumber < totalPage && (
         <li
           onClick={() => setPageNumber(pageNumber + 1)}
           className="w-[33px] h-[33px] rounded-full flex justify-center items-center bg-slate-300 text-[#383737] cursor-pointer"

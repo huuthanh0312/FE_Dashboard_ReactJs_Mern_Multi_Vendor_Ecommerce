@@ -5,7 +5,7 @@ import Pagination from '../Pagination'
 import { FaEdit, FaEye, FaHome, FaTrash } from 'react-icons/fa'
 import { IoIosArrowForward } from 'react-icons/io'
 
-const DiscountProduct = () => {
+const Orders = () => {
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [searchValue, setsearchValue] = useState('')
@@ -18,7 +18,10 @@ const DiscountProduct = () => {
       <div className="flex justify-start text-center text-[#383737] font-bold items-center px-4 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
-            <Link className="inline-flex text-sm font-medium text-gray-700 hover:text-blue-600">
+            <Link
+              to="/seller/dashboard"
+              className="inline-flex text-sm font-medium text-gray-700 hover:text-blue-600"
+            >
               <FaHome className="w-4 h-4 me-1 pt-[1px]" />
               Home
             </Link>
@@ -27,7 +30,7 @@ const DiscountProduct = () => {
             <div className="flex items-center">
               <IoIosArrowForward size={18} className="block mx-1 text-gray-400" />
               <Link className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2">
-                Discount Product
+                Orders
               </Link>
             </div>
           </li>
@@ -60,28 +63,16 @@ const DiscountProduct = () => {
             <thead className="uppercase border bg-[#E5E5E5]">
               <tr>
                 <th className="py-3 px-4" scope="col">
-                  No
-                </th>
-                <th className="py-3 px-4" scope="col">
-                  Image
-                </th>
-                <th className="py-3 px-4" scope="col">
-                  Name
-                </th>
-                <th className="py-3 px-4" scope="col">
-                  Category
-                </th>
-                <th className="py-3 px-4" scope="col">
-                  Brand
+                  Order Id
                 </th>
                 <th className="py-3 px-4" scope="col">
                   Price
                 </th>
                 <th className="py-3 px-4" scope="col">
-                  Discount
+                  Payment Status
                 </th>
                 <th className="py-3 px-4" scope="col">
-                  Stock
+                  Order Status
                 </th>
                 <th className="py-3 px-4" scope="col">
                   Action
@@ -92,43 +83,21 @@ const DiscountProduct = () => {
               {[1, 2, 3, 4, 5].map((d, i) => (
                 <tr className="hover:bg-gray-100 border">
                   <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    {d}
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    <img
-                      className="w-[45px] h-[45px]"
-                      src={`http://localhost:3000/images/category/${d}.jpg`}
-                      alt=""
-                    />
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Men Tshirt Full
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Tshirt
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Adidas
+                    #343434
                   </td>
                   <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
                     $323
                   </td>
                   <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    10%
+                    Pending
                   </td>
                   <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    20
+                    Pending
                   </td>
                   <td scope="row" className="py-1 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">
                       <Link className="p-[6px] border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110">
                         <FaEye></FaEye>
-                      </Link>
-                      <Link className="p-[6px] border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
-                        <FaEdit></FaEdit>
-                      </Link>
-                      <Link className="p-[6px] border-2 border-red-500 rounded-md shadow-md hover:shadow-lg hover:text-red-600 hover:shadow-red-500/50 hover:scale-110">
-                        <FaTrash></FaTrash>
                       </Link>
                     </div>
                   </td>
@@ -160,4 +129,4 @@ const DiscountProduct = () => {
   )
 }
 
-export default DiscountProduct
+export default Orders

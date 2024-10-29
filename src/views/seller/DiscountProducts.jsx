@@ -5,7 +5,7 @@ import Pagination from '../Pagination'
 import { FaEdit, FaEye, FaHome, FaTrash } from 'react-icons/fa'
 import { IoIosArrowForward } from 'react-icons/io'
 
-const Products = () => {
+const DiscountProducts = () => {
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [searchValue, setsearchValue] = useState('')
@@ -30,7 +30,7 @@ const Products = () => {
             <div className="flex items-center">
               <IoIosArrowForward size={18} className="block mx-1 text-gray-400" />
               <Link className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2">
-                Products
+                Discount Products
               </Link>
             </div>
           </li>
@@ -163,4 +163,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default DiscountProducts
