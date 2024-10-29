@@ -1,16 +1,30 @@
-import { AiOutlineDashboard, AiOutlineShoppingCart } from 'react-icons/ai'
+import React from 'react'
+import { AiOutlineDashboard, AiOutlineProduct, AiOutlineShoppingCart } from 'react-icons/ai'
 import { BiCategory } from 'react-icons/bi'
-import { FaUserCog, FaUsersCog, FaUserTie, FaUserTimes } from 'react-icons/fa'
-import { MdOutlinePayment } from 'react-icons/md'
-import { FaCodePullRequest } from 'react-icons/fa6'
+import {
+  FaProductHunt,
+  FaShopify,
+  FaShoppingCart,
+  FaUserCog,
+  FaUserTie,
+  FaUserTimes
+} from 'react-icons/fa'
+import {
+  MdOutlineCategory,
+  MdOutlineDashboard,
+  MdOutlineMessage,
+  MdOutlinePayment
+} from 'react-icons/md'
+import { FaCodePullRequest, FaMessage } from 'react-icons/fa6'
 import { IoIosChatbubbles } from 'react-icons/io'
+import { RiDiscountPercentLine } from 'react-icons/ri'
 
 export const allNav = [
   {
     //navigation admin
     id: 1,
     title: 'Dashboard',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <MdOutlineDashboard size={18} />,
     role: 'admin',
     path: '/admin/dashboard'
   },
@@ -24,7 +38,7 @@ export const allNav = [
   {
     id: 3,
     title: 'Category',
-    icon: <BiCategory size={18} />,
+    icon: <MdOutlineCategory size={18} />,
     role: 'admin',
     path: '/admin/category'
   },
@@ -67,57 +81,64 @@ export const allNav = [
   {
     id: 9,
     title: 'Dashboard',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <MdOutlineDashboard size={18} />,
     role: 'seller',
     path: '/seller/dashboard'
   },
   {
     id: 10,
     title: 'Add Product',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <FaShopify size={18} />,
     role: 'seller',
     path: '/seller/add-product'
   },
   {
     id: 11,
     title: 'All Product',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <FaProductHunt size={18} />,
     role: 'seller',
     path: '/seller/all-product'
   },
   {
     id: 12,
     title: 'Discount Product',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <RiDiscountPercentLine size={18} />,
     role: 'seller',
     path: '/seller/discount-product'
   },
   {
     id: 13,
     title: 'Orders',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <FaShoppingCart size={18} />,
     role: 'seller',
     path: '/seller/orders'
   },
   {
     id: 14,
     title: 'Payments',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <MdOutlinePayment size={18} />,
     role: 'seller',
     path: '/seller/payments'
   },
   {
     id: 15,
     title: 'Chat Customers',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <MdOutlineMessage size={18} />,
     role: 'seller',
     path: '/seller/chat-customers'
   },
   {
     id: 16,
     title: 'Chat Support',
-    icon: <AiOutlineDashboard size={18} />,
+    icon: <IoIosChatbubbles size={18} />,
     role: 'seller',
     path: '/seller/chat-support'
+  },
+  {
+    id: 17,
+    title: 'Profile',
+    icon: <FaUserTie size={18} />,
+    role: 'seller',
+    path: '/seller/profile'
   }
 ]

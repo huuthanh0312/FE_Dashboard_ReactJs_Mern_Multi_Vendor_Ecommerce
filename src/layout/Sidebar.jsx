@@ -25,8 +25,12 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           ${showSidebar ? 'left-0' : '-left-[260px] lg:left-0'}`}
       >
         <div className="h-[70px] flex justify-center items-center mb-2 py-2 border-b-2">
-          <Link to="/" className="w-[180px] h-[50px]">
-            <img src="http://localhost:3000/images/logo.png" className="w-full h-full" alt="" />
+          <Link to="/" className="w-[180px] h-[55px]">
+            <img
+              src="http://localhost:3000/images/logo-admin.png"
+              className="w-full h-full"
+              alt=""
+            />
           </Link>
         </div>
 

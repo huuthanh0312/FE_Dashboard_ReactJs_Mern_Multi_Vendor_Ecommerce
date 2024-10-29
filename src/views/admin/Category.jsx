@@ -97,7 +97,7 @@ const Category = () => {
                     </td>
                     <td scope="row" className="py-1 px-4 whitespace-nowrap">
                       <div className="flex justify-start items-center gap-4">
-                        <Link className="p-[6px] bg-gray-100 border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
+                        <Link className="p-[6px] border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
                           <FaEdit></FaEdit>
                         </Link>
                         <Link className="p-[6px] border-2 border-red-500 rounded-md shadow-md hover:shadow-lg hover:text-red-600 hover:shadow-red-500/50 hover:scale-110">
@@ -170,7 +170,7 @@ const Category = () => {
                   </label>
                   <input type="file" name="image" className="hidden" id="image" />
 
-                  <button className="w-full px-7 py-2 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white">
+                  <button className="w-full px-5 py-1 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white">
                     Add Category
                   </button>
                 </div>

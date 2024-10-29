@@ -60,13 +60,12 @@ const AdminLogin = () => {
     }
   }
   return (
-    <div className="min-w-screen min-h-screen bg-[#f4f4f5] flex justify-center items-center">
-      <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-sky-200 shadow-lg transform skew-y-0 -rotate-6 rounded-3xl"></div>
-        <div className="w-[360px] relative text-black ">
-          <div className="bg-[#f4f4f5] p-4 rounded-3xl shadow-lg shadow-blue-400 mx-auto">
+    <div className="min-w-screen min-h-screen bg-[url('http://localhost:3000/images/bgedit.png')] bg-gray-700 flex justify-center items-center bg-cover">
+      <div className="relative py-3 sm:max-w-xl sm:mx-auto ">
+        <div className="w-[320px] sm:w-[360px] relative text-black p-1 border-slate-500">
+          <div className="bg-[#f4f4f5] p-4 rounded-3xl shadow-lg hover:shadow-blue-400 mx-auto">
             <div className="h-[70px] flex justify-center items-center">
-              <div className="w-[180px] h-[50px]">
+              <div className="w-[200px] h-[60px]">
                 <img src="/images/logo.png" className="w-full h-full" alt="" />
               </div>
             </div>
@@ -104,7 +103,7 @@ const AdminLogin = () => {
                   type={showPassword ? 'text' : 'password'}
                   className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
                   name="password"
-                  placeholder="Password"
+                  placeholder={showPassword ? 'Password' : '••••••••'}
                   id="password"
                   required
                 />

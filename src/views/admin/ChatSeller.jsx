@@ -49,7 +49,7 @@ const ChatSeller = () => {
                 >
                   <div className="relative">
                     <img
-                      className="w-[38px] h-38px] max-w-[38px] p-[2px] border-2 border-gray-500 rounded-full"
+                      className="w-[38px] h-38px] max-w-[38px] p-[2px] border-2 border-indigo-500 rounded-full"
                       src="http://localhost:3000/images/admin.png"
                       alt=""
                     />
@@ -66,7 +66,7 @@ const ChatSeller = () => {
                 >
                   <div className="relative">
                     <img
-                      className="w-[38px] h-38px] max-w-[38px] p-[2px] border-2 border-gray-500 rounded-full"
+                      className="w-[38px] h-38px] max-w-[38px] p-[2px] border-2 border-indigo-500 rounded-full"
                       src="http://localhost:3000/images/admin.png"
                       alt=""
                     />
@@ -83,7 +83,7 @@ const ChatSeller = () => {
                 >
                   <div className="relative">
                     <img
-                      className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-gray-500 rounded-full"
+                      className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-indigo-500 rounded-full"
                       src="http://localhost:3000/images/admin.png"
                       alt=""
                     />
@@ -104,7 +104,7 @@ const ChatSeller = () => {
                   <div className="flex justify-start items-center gap-3">
                     <div className="relative">
                       <img
-                        className="w-[45px] h-[45px] max-w-[45px] p-[2px] border-2 border-blue-500 rounded-full"
+                        className="w-[45px] h-[45px] max-w-[45px] p-[2px] border-2 border-indigo-500 rounded-full"
                         src="http://localhost:3000/images/demo.jpg"
                         alt=""
                       />
@@ -128,12 +128,12 @@ const ChatSeller = () => {
                     <div className="flex justify-start items-center gap-2 md:px-3 py-2 max-w-full lg:max-w-[85%]">
                       <div>
                         <img
-                          className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-white rounded-full shadow-md shadow-blue-500/50"
+                          className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-indigo-500 rounded-full shadow-md shadow-blue-500/50"
                           src="http://localhost:3000/images/demo.jpg"
                           alt=""
                         />
                       </div>
-                      <div className="flex justify-center items-start flex-col w-full bg-blue-500 shadow-lg shadow-blue-500/50 text-white py-1 px-2 rounded-sm">
+                      <div className="flex justify-center items-start flex-col w-full bg-white shadow-lg shadow-blue-500/50 text-gray-700 px-2 py-1 rounded-md">
                         <span>How Are You?</span>
                       </div>
                     </div>
@@ -143,13 +143,13 @@ const ChatSeller = () => {
                   {/* message right*/}
                   <div className="w-full flex justify-end items-center">
                     <div className="flex justify-start items-center gap-2 md:px-3 py-2 max-w-full lg:max-w-[85%]">
-                      <div className="flex justify-center items-start flex-col w-full bg-gray-400 shadow-lg shadow-blue-500/50 text-white py-1 px-2 rounded-sm">
+                      <div className="flex justify-center items-start flex-col w-full bg-blue-500 shadow-lg shadow-blue-500/50 text-white px-2 py-1 rounded-md">
                         <span>How Are You?</span>
                       </div>
                       <div>
                         <img
-                          className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-white rounded-full shadow-md shadow-blue-500/50"
-                          src="http://localhost:3000/images/demo.jpg"
+                          className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-sky-700 rounded-full shadow-md shadow-blue-500/50"
+                          src="http://localhost:3000/images/admin.jpg"
                           alt=""
                         />
                       </div>
@@ -158,16 +158,16 @@ const ChatSeller = () => {
                   {/* end message */}
                   {/* message left*/}
                   <div className="w-full flex justify-start items-center">
-                    <div className="flex justify- items-start gap-2 md:px-3 py-2 max-w-full lg:max-w-[85%]">
+                    <div className="flex justify-start items-center gap-2 md:px-3 py-2 max-w-full lg:max-w-[85%]">
                       <div>
                         <img
-                          className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-white rounded-full shadow-md shadow-blue-500/50"
+                          className="w-[38px] h-[38px] max-w-[38px] p-[2px] border-2 border-indigo-500 rounded-full shadow-md shadow-blue-500/50"
                           src="http://localhost:3000/images/demo.jpg"
                           alt=""
                         />
                       </div>
-                      <div className="flex justify-center items-start flex-col w-full bg-blue-500 shadow-lg shadow-blue-500/50 text-white py-1 px-2 rounded-sm">
-                        <span>I Need some Help</span>
+                      <div className="flex justify-center items-start flex-col w-full bg-white shadow-lg shadow-blue-500/50 text-gray-700 px-2 py-1 rounded-md">
+                        <span>I Need some help ::))</span>
                       </div>
                     </div>
                   </div>
