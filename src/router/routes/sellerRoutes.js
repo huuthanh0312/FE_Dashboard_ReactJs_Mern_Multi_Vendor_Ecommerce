@@ -7,6 +7,8 @@ const Products = lazy(() => import('../../views/seller/Products'))
 const DiscountProducts = lazy(() => import('../../views/seller/DiscountProducts'))
 const Orders = lazy(() => import('../../views/seller/Orders'))
 const Payments = lazy(() => import('../../views/seller/Payments'))
+const ChatToCustomer = lazy(() => import('../../views/seller/ChatToCustomer'))
+const ChatToAdmin = lazy(() => import('../../views/seller/ChatToAdmin'))
 
 export const sellerRoutes = [
   {
@@ -49,5 +51,22 @@ export const sellerRoutes = [
     element: <Payments />,
     role: ['seller'],
     status: 'active'
+  },
+  {
+    path: '/seller/chat-support',
+    element: <ChatToAdmin />,
+    ability: ['active', 'deactive', 'pending']
+  },
+  {
+    path: '/seller/chat-customer',
+    element: <ChatToCustomer />,
+    role: ['seller'],
+    ability: ['active']
+  },
+  {
+    path: '/seller/chat-customer/:customerId',
+    element: <ChatToCustomer />,
+    role: ['seller'],
+    ability: ['active']
   }
 ]

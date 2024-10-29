@@ -122,10 +122,10 @@ export const allNav = [
   },
   {
     id: 15,
-    title: 'Chat Customers',
+    title: 'Chat Customer',
     icon: <MdOutlineMessage size={18} />,
     role: 'seller',
-    path: '/seller/chat-customers'
+    path: '/seller/chat-customer'
   },
   {
     id: 16,
