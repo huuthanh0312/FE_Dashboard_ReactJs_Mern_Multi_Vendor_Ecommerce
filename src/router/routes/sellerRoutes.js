@@ -10,6 +10,7 @@ const Payments = lazy(() => import('../../views/seller/Payments'))
 const ChatToCustomer = lazy(() => import('../../views/seller/ChatToCustomer'))
 const ChatToAdmin = lazy(() => import('../../views/seller/ChatToAdmin'))
 const Profile = lazy(() => import('../../views/seller/Profile'))
+const EditProduct = lazy(() => import('../../views/seller/EditProduct'))
 
 export const sellerRoutes = [
   {
@@ -26,6 +27,12 @@ export const sellerRoutes = [
   {
     path: '/seller/add-product',
     element: <AddProduct />,
+    role: ['seller'],
+    status: 'active'
+  },
+  {
+    path: '/seller/edit-product/:productId',
+    element: <EditProduct />,
     role: ['seller'],
     status: 'active'
   },

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaHome } from 'react-icons/fa'
 import { IoIosArrowForward, IoMdCloseCircle, IoMdImages } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
-const AddProduct = () => {
+const EditProduct = () => {
   const categories = [
     { id: 1, name: 'Sports' },
     { id: 2, name: 'Tshirt' },
@@ -63,27 +63,49 @@ const AddProduct = () => {
     }
   }
   // change Image
-  const changeImage = (img, index) => {
-    if (img) {
-      let tempUrl = imageShow
-      let tempImages = images
+  // const changeImage = (img, index) => {
+  //   if (img) {
+  //     let tempUrl = imageShow
+  //     let tempImages = images
 
-      tempImages[index] = img
-      tempUrl[index] = { url: URL.createObjectURL(img) }
+  //     tempImages[index] = img
+  //     tempUrl[index] = { url: URL.createObjectURL(img) }
 
-      setImageShow([...tempUrl])
-      setImages([...tempImages])
+  //     setImageShow([...tempUrl])
+  //     setImages([...tempImages])
+  //   }
+  // }
+  const changeImage = (img, files) => {
+    if (files.length > 0) {
+      console.log(img)
+      console.log(files[0])
     }
   }
-
   // remove Image
-  const removeImage = (i) => {
-    const filterImage = images.filter((img, index) => index !== i)
-    const filterImageUrl = imageShow.filter((img, index) => index !== i)
+  // const removeImage = (i) => {
+  //   const filterImage = images.filter((img, index) => index !== i)
+  //   const filterImageUrl = imageShow.filter((img, index) => index !== i)
 
-    setImageShow(filterImageUrl)
-    setImages(filterImage)
-  }
+  //   setImageShow(filterImageUrl)
+  //   setImages(filterImage)
+  // }
+
+  //
+  useEffect(() => {
+    setState({
+      name: 'Mens tShirt',
+      description: 'Ultilities for controls',
+      discount: '10',
+      price: '454',
+      brand: 'Sport',
+      stock: '45'
+    })
+    setCategory('Tshirt')
+    setImageShow([
+      'http://localhost:3000/images/admin.png',
+      'http://localhost:3000/images/admin.png'
+    ])
+  }, [])
   return (
     <div>
       <div className="px-2 lg:px-5 pb-6 ">
@@ -103,7 +125,7 @@ const AddProduct = () => {
               <div className="flex items-center">
                 <IoIosArrowForward size={18} className="block mx-1 text-gray-400" />
                 <Link className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2">
-                  Add Product
+                  Edit Product
                 </Link>
               </div>
             </li>
@@ -112,7 +134,7 @@ const AddProduct = () => {
         {/* End Breadcrumbs  */}
         <div className="w-full p-4 bg-white rounded-md shadow-md hover:shadow-indigo-200">
           <div className="flex justify-between items-center text-[#383737] pb-1 border-b-2">
-            <h1 className="text-xl font-semibold">Add Product</h1>
+            <h1 className="text-xl font-semibold">Edit Product</h1>
             <Link
               to="/seller/all-product"
               className="px-6 py-1 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-[2px] my-2 hover:bg-blue-500 hover:text-white"
@@ -281,19 +303,19 @@ const AddProduct = () => {
                 {/* images show */}
                 {imageShow.map((img, i) => (
                   <div className="h-[180px] relative rounded-md shadow-lg border sm:hover:scale-105 hover:shadow-indigo-200">
-                    <label htmlFor={i} className="flex justify-center items-center">
-                      <img src={img.url} alt="" className="h-[175px] mx-auto my-auto rounded-md" />
+                    <label htmlFor={i} className="flex justify-center items-center ">
+                      <img src={img} alt="" className="h-[175px] rounded-md" />
                     </label>
                     {/* change image */}
                     <input
                       type="file"
-                      onChange={(e) => changeImage(e.target.files[0], i)}
+                      onChange={(e) => changeImage(img, e.target.files)}
                       id={i}
                       className="hidden"
                     />
                     {/* end */}
                     <span
-                      onClick={() => removeImage(i)}
+                      // onClick={() => removeImage(i)}
                       className="absolute top-1 right-1 p-1 z-10 cursor-pointer border-2 border-red-500 rounded-full shadow-lg text-red-900 hover:scale-105 hover:shadow-red-300"
                     >
                       <IoMdCloseCircle size={18} />
@@ -322,7 +344,7 @@ const AddProduct = () => {
               </div>
               <div>
                 <button className="w-full md:w-auto px-7 py-2 font-semibold  rounded-md shadow-md my-2 bg-blue-900 text-white hover:scale-y-105 hover:shadow-indigo-200">
-                  Add Product
+                  Save Changes
                 </button>
               </div>
             </form>
@@ -333,4 +355,4 @@ const AddProduct = () => {
   )
 }
 
-export default AddProduct
+export default EditProduct

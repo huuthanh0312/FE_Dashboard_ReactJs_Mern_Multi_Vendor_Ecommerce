@@ -127,7 +127,10 @@ const Products = () => {
                       <Link className="p-[6px] border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110">
                         <FaEye></FaEye>
                       </Link>
-                      <Link className="p-[6px] border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
+                      <Link
+                        to={`/seller/edit-product/32`}
+                        className="p-[6px] border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110"
+                      >
                         <FaEdit></FaEdit>
                       </Link>
                       <Link className="p-[6px] border-2 border-red-500 rounded-md shadow-md hover:shadow-lg hover:text-red-600 hover:shadow-red-500/50 hover:scale-110">
