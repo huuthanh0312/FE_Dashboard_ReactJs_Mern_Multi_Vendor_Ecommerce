@@ -29,7 +29,7 @@ const ChatToAdmin = () => {
         {/* End Breadcrumbs */}
         <div className="w-full h-[calc(100vh-140px)] p-4 rounded-md shadow-md hover:shadow-indigo-200 bg-white ">
           <div className="flex w-full relative ">
-            <div className="w-full md:h-[calc(100%-200px)] md:pl-4">
+            <div className="w-full md:h-[calc(100%-200px)]">
               <div className="flex justify-between items-center">
                 <div className="flex justify-start items-center gap-3">
                   <div className="relative">
