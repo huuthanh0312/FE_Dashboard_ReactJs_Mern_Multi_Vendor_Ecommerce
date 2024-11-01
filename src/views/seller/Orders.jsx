@@ -96,7 +96,10 @@ const Orders = () => {
                   </td>
                   <td scope="row" className="py-1 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">
-                      <Link className="p-[6px] border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110">
+                      <Link
+                        to={`/seller/order/details/23`}
+                        className="p-[6px] border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110"
+                      >
                         <FaEye></FaEye>
                       </Link>
                     </div>
