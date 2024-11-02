@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { messageClear, seller_login } from '../../store/Reducers/authReducer'
+import { PropagateLoader } from 'react-spinners'
+import { overrideStyle } from '../../utils/utils'
 
 const Login = () => {
+  const navigate = useNavigate() // điều hướng trang
+  const dispatch = useDispatch() //kết nối component với Redux store để có thể gửi action và thay đổi state toàn cục của ứng dụng.
+  const { loader, errorMessage, successMessage } = useSelector((state) => state.auth) //state loader
   const [showPassword, setShowPassword] = useState(false) // state show password
   const [state, setState] = useState({
     email: '',
@@ -18,8 +26,21 @@ const Login = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    console.log(state)
+    dispatch(seller_login(state))
   }
+
+  // use Effect check toast message error
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage)
+      dispatch(messageClear()) //message clear function reudx
+    }
+    if (successMessage) {
+      toast.success(successMessage)
+      dispatch(messageClear()) //message clear function reudx
+      navigate('/')
+    }
+  }, [errorMessage, successMessage])
 
   // show hide password
   const showPasswordClick = () => {
@@ -30,7 +51,7 @@ const Login = () => {
     }
   }
   return (
-    <div className="min-w-screen min-h-screen bg-[url('http://localhost:3000/images/bgedit.png')] bg-gray-700 flex justify-center items-center bg-cover">
+    <div className="min-w-screen min-h-screen bg-[url('http://localhost:3000/images/bgedit.png')] bg-slate-700 bg-cover h-screen flex justify-center items-center">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto ">
         <div className="w-[320px] sm:w-[360px] relative text-black p-1 border-slate-500">
           <div className="bg-[#ffffff] p-4 rounded-3xl shadow-md hover:shadow-blue-400 mx-auto">
@@ -45,6 +66,7 @@ const Login = () => {
                 <input
                   onChange={inputHandle}
                   value={state.email}
+                  disabled={loader ? true : false}
                   className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
                   type="email"
                   name="email"
@@ -58,6 +80,7 @@ const Login = () => {
                 <input
                   onChange={inputHandle}
                   value={state.password}
+                  disabled={loader ? true : false}
                   type={showPassword ? 'text' : 'password'}
                   className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
                   name="password"
@@ -74,7 +97,11 @@ const Login = () => {
                 </button>
               </div>
               <button className="bg-slate-700 w-full hover:bg-sky-700 hover:shadow-blue-300/hover:shadow-lg text-white rounded-md px-7 py-2 mb-3 mt-2">
-                Sign In
+                {loader ? (
+                  <PropagateLoader size={10} color="#f77001" cssOverride={overrideStyle} />
+                ) : (
+                  'Sign In'
+                )}
               </button>
               <div className="flex items-center mb-3 gap-3 justify-center">
                 <p>

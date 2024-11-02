@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { PropagateLoader } from 'react-spinners'
+import { overrideStyle } from '../../utils/utils'
+import { messageClear, seller_register } from '../../store/Reducers/authReducer'
+import toast from 'react-hot-toast'
 
 const Register = () => {
+  const navigate = useNavigate() // điều hướng trang
+  const dispatch = useDispatch() //kết nối component với Redux store để có thể gửi action và thay đổi state toàn cục của ứng dụng.
+  const { loader, errorMessage, successMessage } = useSelector((state) => state.auth) //state loader
   const [showPassword, setShowPassword] = useState(false) // state show password
   const [state, setState] = useState({
     name: '',
@@ -19,9 +27,21 @@ const Register = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    console.log(state)
+    dispatch(seller_register(state))
   }
 
+  // use Effect check toast message error
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage)
+      dispatch(messageClear()) //message clear function reudx
+    }
+    if (successMessage) {
+      toast.success(successMessage)
+      dispatch(messageClear()) //message clear function reudx
+      navigate('/')
+    }
+  }, [errorMessage, successMessage])
   // show hide password
   const showPasswordClick = () => {
     if (showPassword === true) {
@@ -39,7 +59,7 @@ const Register = () => {
               Thanh Shop Sign Up! 👋
             </h2>
             <div className="text-center">
-              <span className="mb-2 font-mono">Welcome to Ecommerce</span>
+              <span className="mb-2 font-mono">Please register your account!</span>
             </div>
 
             <form onSubmit={submit}>
@@ -48,6 +68,7 @@ const Register = () => {
                 <input
                   onChange={inputHandle}
                   value={state.name}
+                  disabled={loader ? true : false}
                   className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
                   type="text"
                   name="name"
@@ -61,6 +82,7 @@ const Register = () => {
                 <input
                   onChange={inputHandle}
                   value={state.email}
+                  disabled={loader ? true : false}
                   className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
                   type="email"
                   name="email"
@@ -74,6 +96,7 @@ const Register = () => {
                 <input
                   onChange={inputHandle}
                   value={state.password}
+                  disabled={loader ? true : false}
                   type={showPassword ? 'text' : 'password'}
                   className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
                   name="password"
@@ -99,14 +122,17 @@ const Register = () => {
                 <label htmlFor="checkbox"> I agree to privacy policy & treams</label>
               </div>
               <button className="bg-slate-700 hover:bg-sky-700 w-full hover:shadow-blue-300/hover:shadow-lg text-white rounded-md px-7 py-2 mb-2">
-                Sign Up
+                {loader ? (
+                  <PropagateLoader size={10} color="#f77001" cssOverride={overrideStyle} />
+                ) : (
+                  'Sign Up'
+                )}
               </button>
               <div className="flex items-center mb-2 gap-3 justify-center">
                 <p>
-                  Already Have an acount ?{' '}
+                  Already Have an acount ?
                   <Link className="font-bold text-sky-700" to="/login">
-                    {' '}
-                    Sign In
+                    Login
                   </Link>
                 </p>
               </div>
