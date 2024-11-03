@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { getNav } from '../navigation'
 import { FaLongArrowAltUp, FaSignOutAlt } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
+  const dispatch = useDispatch()
+  const { role } = useSelector((state) => state.auth)
   const { pathname } = useLocation()
   // navigation
   const [allNav, setAllNav] = useState([])
   useEffect(() => {
-    const navs = getNav('seller')
+    const navs = getNav(role)
     setAllNav(navs)
-  }, [])
+  }, [role])
 
   return (
     <div>

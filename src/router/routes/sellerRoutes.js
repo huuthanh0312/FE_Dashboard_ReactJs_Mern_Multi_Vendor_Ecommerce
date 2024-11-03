@@ -1,6 +1,5 @@
-import { lazy } from 'react'
+import React, { lazy } from 'react'
 //import Home from "../../views/pages/Home";
-const Home = lazy(() => import('../../views/Home'))
 const SellerDashboard = lazy(() => import('../../views/seller/SellerDashboard'))
 const AddProduct = lazy(() => import('../../views/seller/AddProduct'))
 const Products = lazy(() => import('../../views/seller/Products'))
@@ -12,82 +11,88 @@ const ChatToAdmin = lazy(() => import('../../views/seller/ChatToAdmin'))
 const Profile = lazy(() => import('../../views/seller/Profile'))
 const EditProduct = lazy(() => import('../../views/seller/EditProduct'))
 const OrderDetails = lazy(() => import('../../views/seller/OrderDetails'))
+const Pending = lazy(() => import('../../views/Pending'))
+const Deactive = lazy(() => import('../../views/Deactive'))
 
 export const sellerRoutes = [
   {
-    path: '/',
-    element: <Home />,
-    ability: ['admin', 'seller']
+    path: '/seller/account-pending',
+    element: <Pending />,
+    ability: 'seller'
+  }, {
+    path: '/seller/account-deactive',
+    element: <Deactive />,
+    ability: 'seller'
   },
   {
     path: '/seller/dashboard',
     element: <SellerDashboard />,
-    role: ['seller'],
+    role: 'seller',
     status: 'active'
   },
   {
     path: '/seller/add-product',
     element: <AddProduct />,
-    role: ['seller'],
+    role: 'seller',
     status: 'active'
   },
   {
     path: '/seller/edit-product/:productId',
     element: <EditProduct />,
-    role: ['seller'],
+    role: 'seller',
     status: 'active'
   },
   {
-    path: '/seller/all-product',
+    path: '/seller/all-products',
     element: <Products />,
-    role: ['seller'],
+    role: 'seller',
     status: 'active'
   },
   {
     path: '/seller/discount-product',
     element: <DiscountProducts />,
-    role: ['seller'],
+    role: 'seller',
     status: 'active'
   },
   {
     path: '/seller/orders',
     element: <Orders />,
-    role: ['seller'],
-    ability: ['active', 'deactive']
+    role: 'seller',
+    visibility: ['active', 'deactive']
   },
   {
     path: '/seller/order/details/:orderId',
     element: <OrderDetails />,
-    role: ['seller'],
-    ability: ['active', 'deactive']
+    role: 'seller',
+    visibility: ['active', 'deactive']
   },
   {
     path: '/seller/payments',
     element: <Payments />,
-    role: ['seller'],
+    role: 'seller',
     status: 'active'
   },
   {
     path: '/seller/chat-support',
     element: <ChatToAdmin />,
-    ability: ['active', 'deactive', 'pending']
+    visibility: ['active', 'deactive', 'pending']
   },
   {
     path: '/seller/chat-customer',
     element: <ChatToCustomer />,
-    role: ['seller'],
-    ability: ['active']
+    role: 'seller',
+    status: 'active'
   },
   {
     path: '/seller/chat-customer/:customerId',
     element: <ChatToCustomer />,
-    role: ['seller'],
-    ability: ['active']
+    role: 'seller',
+    status: 'active'
   },
   {
     path: '/seller/profile',
     element: <Profile />,
-    role: ['seller'],
-    ability: ['active']
+    role: 'seller',
+    visibility: ['active', 'deactive', 'pending']
   }
 ]
