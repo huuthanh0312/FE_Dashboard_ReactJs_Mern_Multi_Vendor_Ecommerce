@@ -63,7 +63,7 @@ const Register = () => {
             </div>
 
             <form onSubmit={submit}>
-              <div className="flex flex-col w-full gap-1 mb-2">
+              <div className="flex flex-col w-full gap-1 mb-2 relative">
                 <label htmlFor="name">Name</label>
                 <input
                   onChange={inputHandle}

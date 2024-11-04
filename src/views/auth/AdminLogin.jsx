@@ -66,7 +66,7 @@ const AdminLogin = () => {
           <div className="bg-[#f4f4f5] p-4 rounded-3xl shadow-lg hover:shadow-blue-400 mx-auto">
             <div className="h-[70px] flex justify-center items-center">
               <div className="w-[200px] h-[60px]">
-                <img src="/images/logo.png" className="w-full h-full" alt="" />
+                <img src="/images/logo-admin.png" className="w-full h-full" alt="" />
               </div>
             </div>
             <h3 className="font-semibold text-lg text-center">Admin 👋</h3>

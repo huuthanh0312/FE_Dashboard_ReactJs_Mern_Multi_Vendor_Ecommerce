@@ -42,7 +42,7 @@ const Category = () => {
         </button>
       </div>
       <div className="w-full flex flex-wrap ">
-        <div className="w-full lg:w-7/12 p-5 rounded-md shadow-md hover:shadow-indigo-200 bg-white">
+        <div className="w-full lg:w-8/12 p-5 rounded-md shadow-md hover:shadow-indigo-200 bg-white">
           <div className="flex justify-between items-center">
             <select
               onChange={(e) => {
@@ -130,7 +130,7 @@ const Category = () => {
         </div>
         {/*  */}
         <div
-          className={`w-[320px] lg:w-5/12 translate-x-100 lg:relative lg:right-0 fixed ${
+          className={`w-[320px] lg:w-4/12 translate-x-100 lg:relative lg:right-0 fixed ${
             show ? 'right-0' : '-right-[340px]'
           } z-[9999] top-0 transition-all duration-500`}
         >
@@ -141,9 +141,9 @@ const Category = () => {
               </h1>
               <div
                 onClick={() => setShow(false)}
-                className="lg:hidden block border-2 border-red-500 fixed top-1 -ml-3 rounded-full shadow-md hover:shadow-gray-400 hover:bg-gray-200 hover:text-red-500 hover:border-gray-600"
+                className="lg:hidden block border-2 border-red-500 fixed top-1.5 -ml-3 rounded-full shadow-md hover:bg-gray-200 hover:text-red-500 hover:shadow-red-800 hover:scale-105"
               >
-                <IoMdCloseCircle size={20} />
+                <IoMdCloseCircle size={22} />
               </div>
               <form action="">
                 <div className="flex flex-col w-full gap-1 mb-3 text-[#383737]">
@@ -161,7 +161,7 @@ const Category = () => {
                 <div>
                   <label
                     htmlFor="image"
-                    className="flex justify-center items-center flex-col h-[238px] font-semibold cursor-pointer border border-dashed hover:border-blue-500 w-full border-gray-400"
+                    className="flex justify-center items-center flex-col h-[238px] font-semibold rounded-md cursor-pointer border border-dashed hover:border-blue-500 w-full border-gray-400"
                   >
                     <span>
                       <FaImage size={24} />
@@ -170,7 +170,7 @@ const Category = () => {
                   </label>
                   <input type="file" name="image" className="hidden" id="image" />
 
-                  <button className="w-full px-5 py-1 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-2 hover:bg-blue-500 hover:text-white">
+                  <button className="w-full px-5 py-1 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-3 hover:bg-blue-500 hover:text-white">
                     Add Category
                   </button>
                 </div>

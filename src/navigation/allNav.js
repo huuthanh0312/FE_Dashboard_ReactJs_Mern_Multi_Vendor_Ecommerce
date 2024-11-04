@@ -30,17 +30,17 @@ export const allNav = [
   },
   {
     id: 2,
-    title: 'Orders',
-    icon: <AiOutlineShoppingCart size={ 18 } />,
-    role: 'admin',
-    path: '/admin/orders'
-  },
-  {
-    id: 3,
     title: 'Category',
     icon: <FaRegListAlt size={ 18 } />,
     role: 'admin',
     path: '/admin/category'
+  },
+  {
+    id: 3,
+    title: 'Orders',
+    icon: <AiOutlineShoppingCart size={ 18 } />,
+    role: 'admin',
+    path: '/admin/orders'
   },
   {
     id: 4,
