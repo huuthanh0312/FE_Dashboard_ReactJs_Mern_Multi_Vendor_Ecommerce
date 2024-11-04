@@ -29,7 +29,7 @@ const ChatToCustomer = () => {
           </ol>
         </div>
         {/* End Breadcrumbs */}
-        <div className="w-full h-[calc(100vh-140px)] p-4 rounded-md shadow-md hover:shadow-indigo-200 bg-white ">
+        <div className="w-full h-[calc(100vh-140px)] p-5 rounded-md shadow-md hover:shadow-indigo-200 bg-white ">
           <div className="flex w-full relative ">
             <div
               className={`w-[280px] h-full absolute z-10 md:left-0 md:relative transition-all  ${

@@ -12,7 +12,7 @@ const Profile = () => {
   return (
     <div className="px-2 lg:px-5 pb-6 ">
       {/*  Breadcrumbs */}
-      <div className="flex justify-start text-center text-[#383737] font-bold items-center px-4 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+      <div className="flex justify-start text-center text-[#383737] font-bold items-center px-5 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
             <Link
@@ -173,9 +173,9 @@ const Profile = () => {
           </div>
         </div>
         <div className="w-full md:w-6/12">
-          <div className="w-full pl-0 md:pl-5 mt-6 md:mt-0  rounded-md text-[#383737]">
+          <div className="w-full pl-0 md:pl-5 mt-6 md:mt-0 rounded-md text-[#383737]">
             <div className="rounded-md text-[#383737] p-5 bg-white">
-              <div className="flex text-lg p-2 font-bold uppercase border-t-4 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
+              <div className="flex text-lg p-2 font-bold uppercase border-b-2 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
                 <h2>Change Password</h2>
               </div>
 

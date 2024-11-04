@@ -15,7 +15,7 @@ const DiscountProducts = () => {
   return (
     <div className="px-2 lg:px-5 pb-6 ">
       {/*  Breadcrumbs */}
-      <div className="flex justify-start text-center text-[#383737] font-bold items-center px-4 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+      <div className="flex justify-start text-center text-[#383737] font-bold items-center px-5 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
             <Link
@@ -37,7 +37,7 @@ const DiscountProducts = () => {
         </ol>
       </div>
       {/* End Breadcrumbs  */}
-      <div className="w-full p-4 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+      <div className="w-full p-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <div className="flex justify-between items-center">
           <select
             onChange={(e) => {
