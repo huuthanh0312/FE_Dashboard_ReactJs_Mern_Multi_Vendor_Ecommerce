@@ -73,11 +73,6 @@ export const sellerRoutes = [
     status: 'active'
   },
   {
-    path: '/seller/chat-support',
-    element: <ChatToAdmin />,
-    visibility: ['active', 'deactive', 'pending']
-  },
-  {
     path: '/seller/chat-customer',
     element: <ChatToCustomer />,
     role: 'seller',
@@ -88,6 +83,12 @@ export const sellerRoutes = [
     element: <ChatToCustomer />,
     role: 'seller',
     status: 'active'
+  },
+  {
+    path: '/seller/chat-support',
+    element: <ChatToAdmin />,
+    role: 'seller',
+    visibility: ['active', 'deactive', 'pending']
   },
   {
     path: '/seller/profile',

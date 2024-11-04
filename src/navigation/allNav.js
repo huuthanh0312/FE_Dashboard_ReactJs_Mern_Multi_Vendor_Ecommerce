@@ -2,6 +2,7 @@ import React from 'react'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import {
   FaProductHunt,
+  FaRegListAlt,
   FaShopify,
   FaShoppingCart,
   FaUserCog,
@@ -37,7 +38,7 @@ export const allNav = [
   {
     id: 3,
     title: 'Category',
-    icon: <MdOutlineCategory size={ 18 } />,
+    icon: <FaRegListAlt size={ 18 } />,
     role: 'admin',
     path: '/admin/category'
   },

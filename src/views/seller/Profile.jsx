@@ -175,7 +175,7 @@ const Profile = () => {
         <div className="w-full md:w-6/12">
           <div className="w-full pl-0 md:pl-5 mt-6 md:mt-0  rounded-md text-[#383737]">
             <div className="rounded-md text-[#383737] p-5 bg-white">
-              <div className="flex text-lg p-2 font-bold uppercase border-b-4 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
+              <div className="flex text-lg p-2 font-bold uppercase border-t-4 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
                 <h2>Change Password</h2>
               </div>
 

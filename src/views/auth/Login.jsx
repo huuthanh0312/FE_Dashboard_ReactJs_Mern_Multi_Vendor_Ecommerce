@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { messageClear, seller_login } from '../../store/Reducers/authReducer'
-import { PropagateLoader } from 'react-spinners'
+import { ClipLoader, PropagateLoader } from 'react-spinners'
 import { overrideStyle } from '../../utils/utils'
 
 const Login = () => {
@@ -74,6 +74,15 @@ const Login = () => {
                   id="email"
                   required
                 />
+                {loader ? (
+                  <ClipLoader
+                    size={20}
+                    color="#f77001"
+                    className="absolute top-10 right-3 end-0 items-center justify-center"
+                  />
+                ) : (
+                  <></>
+                )}
               </div>
               <div className="flex flex-col w-full gap-1 mb-3 relative">
                 <label htmlFor="password">Password</label>
