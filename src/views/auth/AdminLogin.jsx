@@ -5,6 +5,7 @@ import { ClipLoader, PropagateLoader } from 'react-spinners'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { overrideStyle } from '../../utils/utils'
 
 const AdminLogin = () => {
   const navigate = useNavigate() // điều hướng trang
@@ -41,15 +42,6 @@ const AdminLogin = () => {
       navigate('/')
     }
   }, [errorMessage, successMessage])
-
-  //style css PropagateLoader spinners
-  const overrideStyle = {
-    display: 'flex',
-    margin: '0 auto',
-    height: '16px',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
 
   // show hide password
   const showPasswordClick = () => {

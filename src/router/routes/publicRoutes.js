@@ -20,13 +20,13 @@ const publicRoutes = [
   },
   {
     path: '/',
-    element: <Home />,
+    element: <Home />
   },
 
   {
     path: '/unauthorized',
-    element: <Unauthorized />,
-  },
+    element: <Unauthorized />
+  }
 ]
 
 export default publicRoutes

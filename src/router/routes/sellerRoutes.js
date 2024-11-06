@@ -19,7 +19,8 @@ export const sellerRoutes = [
     path: '/seller/account-pending',
     element: <Pending />,
     ability: 'seller'
-  }, {
+  },
+  {
     path: '/seller/account-deactive',
     element: <Deactive />,
     ability: 'seller'
