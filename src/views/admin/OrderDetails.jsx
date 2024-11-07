@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const OrderDetails = () => {
   return (
     <div>
-      <div className="px-2 lg:px-5 pb-6 ">
+      <div className="px-2 md:px-5 pb-6 ">
         {/*  Breadcrumbs */}
         <div className="flex justify-start text-center text-[#383737] font-bold items-center px-5 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
           <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">

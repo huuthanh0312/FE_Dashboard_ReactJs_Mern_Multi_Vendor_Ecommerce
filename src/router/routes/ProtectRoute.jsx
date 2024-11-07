@@ -15,16 +15,15 @@ const ProtectRoute = ({ route, children }) => {
           if (route.status) {
             if (userInfo.status === route.status) {
               return <Suspense fallback={null}>{children}</Suspense>
-            } else {
-              if (userInfo.status === 'pending') {
-                return <Navigate to="/seller/account-pending" replace />
-              } else if (userInfo.status === 'deactive') {
-                return <Navigate to="/seller/account-deactive" replace />
-              }
             }
-          }
-          // If no specific status, check visibility
-          if (route.visibility) {
+            if (userInfo.status === 'pending') {
+              return <Navigate to="/seller/account-pending" replace />
+            }
+            if (userInfo.status === 'deactive') {
+              return <Navigate to="/seller/account-deactive" replace />
+            }
+          } else if (route.visibility) {
+            // If no specific status, check visibility
             if (route.visibility.some((r) => r === userInfo.status)) {
               return <Suspense fallback={null}>{children}</Suspense>
             } else {

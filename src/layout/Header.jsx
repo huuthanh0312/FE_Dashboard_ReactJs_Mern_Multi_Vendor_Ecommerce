@@ -21,7 +21,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
   return (
     //fixed top-0 left-0 w-full
     <div
-      className={`fixed top-0 left-0 w-full z-10 mx-auto transition-all duration-300 
+      className={`fixed top-0 left-0 w-full z-20 mx-auto transition-all duration-300 
 						${sticky ? 'p-[7px] shadow-lg  bg-white hover:shadow-indigo-200' : 'py-2 px-2 md:px-5 '}`}
     >
       <div

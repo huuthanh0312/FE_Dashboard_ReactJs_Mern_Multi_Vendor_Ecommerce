@@ -1,19 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LuArrowDownSquare } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import { FaEdit, FaEye, FaHome, FaTrash } from 'react-icons/fa'
 import { IoIosArrowForward } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProduct } from '../../store/Reducers/productReducer'
+import { toast } from 'react-hot-toast'
 
 const Products = () => {
+  const dispatch = useDispatch()
+  const { products, totalProduct } = useSelector((state) => state.product) //state loader
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [searchValue, setsearchValue] = useState('')
   const [parPage, setParPage] = useState(5)
-  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    // object
+    const obj = {
+      parPage: parseInt(parPage),
+      page: parseInt(currentPage),
+      searchValue
+    }
+    dispatch(getProduct(obj))
+  }, [searchValue, currentPage, parPage, dispatch])
 
   return (
-    <div className="px-2 lg:px-5 pb-6 ">
+    <div className="px-2 md:px-5 pb-6 ">
       {/*  Breadcrumbs */}
       <div className="flex justify-start text-center text-[#383737] font-bold items-center px-5 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -92,37 +106,23 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5].map((d, i) => (
-                <tr className="hover:bg-gray-100 border">
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    {d}
+              {products.map((d, i) => (
+                <tr key={i} className="hover:bg-gray-100 border">
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">{i + 1}</td>
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">
+                    <img className="w-[45px] h-[45px]" src={d.images[0]} alt="" />
                   </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    <img
-                      className="w-[45px] h-[45px]"
-                      src={`http://localhost:3000/images/category/${d}.jpg`}
-                      alt=""
-                    />
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">
+                    {d?.name?.slice(0, 15)}
                   </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Men Tshirt Full
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">{d.category}</td>
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">{d.brand}</td>
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">${d.price}</td>
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">
+                    {d.discount === 0 ? <span>No Discount</span> : <span>{d.discount}%</span>}
                   </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Tshirt
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Adidas
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    $323
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    10%
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    20
-                  </td>
-                  <td scope="row" className="py-1 px-4 whitespace-nowrap">
+                  <td className="py-1 px-4 font-medium whitespace-nowrap">{d.stock}</td>
+                  <td className="py-1 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">
                       <Link className="p-[6px] border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110">
                         <FaEye></FaEye>
@@ -145,21 +145,25 @@ const Products = () => {
         </div>
         {/* end table */}
         {/* Paginantion */}
-        <div className="flex w-full justify-between items-center mt-2">
+        <div className="flex w-full justify-between items-center mt-2 ">
           <span className="text-sm text-gray-700 dark:text-gray-400">
-            Showing <span className="font-semibold text-gray-900 dark:text-white">1</span> to{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">10</span> of{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">100</span> Entries
+            Showing <span className="font-semibold text-[#383737]">{currentPage}</span>
+            to {parPage}
+            <span className="font-semibold text-[#383737]"> 10</span> of
+            <span className="font-semibold text-[#383737]"> 100</span> Entries
           </span>
-          <Pagination
-            pageNumber={currentPage}
-            setPageNumber={setCurrentPage}
-            totalItem={50}
-            parPage={parPage}
-            showItem={3}
-          />
+          {totalProduct <= parPage ? (
+            ''
+          ) : (
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={totalProduct}
+              parPage={parPage}
+              showItem={3}
+            />
+          )}
         </div>
-
         {/* end Paginantion */}
       </div>
     </div>

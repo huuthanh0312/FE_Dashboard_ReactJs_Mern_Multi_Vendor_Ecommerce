@@ -1,17 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaHome } from 'react-icons/fa'
 import { IoIosArrowForward, IoMdCloseCircle, IoMdImages } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCategory, messageClear } from '../../store/Reducers/categoryReducer'
+import { addProduct } from '../../store/Reducers/productReducer'
+import toast from 'react-hot-toast'
+import { ClipLoader, PuffLoader } from 'react-spinners'
+import { overrideStyle, overrideStyleClipLoader } from '../../utils/utils'
 
 const AddProduct = () => {
-  const categories = [
-    { id: 1, name: 'Sports' },
-    { id: 2, name: 'Tshirt' },
-    { id: 3, name: 'Mobile' },
-    { id: 4, name: 'Computer' },
-    { id: 5, name: 'Wacth' },
-    { id: 6, name: 'Pant' }
-  ]
+  const dispatch = useDispatch()
+  const { categories } = useSelector((state) => state.category) //state loader
+  const { loader, errorMessage, successMessage } = useSelector((state) => state.product) //state loader
+  //search anh choose category
+  const [cateShow, setCateShow] = useState(false)
+  const [category, setCategory] = useState('')
+  const [allCategory, setAllCategory] = useState([])
+  const [searchValue, setSearchValue] = useState('')
+
+  // get info categories
+  useEffect(() => {
+    dispatch(getCategory({ searchValue: '', parPage: '', page: '' }))
+  }, [])
 
   const [state, setState] = useState({
     name: '',
@@ -24,12 +35,6 @@ const AddProduct = () => {
   const inputHandle = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
-
-  //search anh choose category
-  const [cateShow, setCateShow] = useState(false)
-  const [category, setCategory] = useState('')
-  const [allCategory, setAllCategory] = useState(categories)
-  const [searchValue, setSearchValue] = useState('')
 
   //search category chuan hoa chuoi thanh chuoi thuong sau do tim
   const categorySearch = (e) => {
@@ -84,9 +89,54 @@ const AddProduct = () => {
     setImageShow(filterImageUrl)
     setImages(filterImage)
   }
+
+  useEffect(() => {
+    setAllCategory(categories)
+  }, [categories])
+
+  //submit form
+  const add = (e) => {
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('name', state.name)
+    formData.append('description', state.description)
+    formData.append('discount', state.discount)
+    formData.append('price', state.price)
+    formData.append('brand', state.brand)
+    formData.append('stock', state.stock)
+    formData.append('shopName', 'TH Shop')
+    formData.append('category', category)
+    for (let i = 0; i < images.length; i++) {
+      formData.append('images', images[i])
+    }
+    dispatch(addProduct(formData))
+  }
+
+  // use Effect check toast message error
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage)
+      dispatch(messageClear()) //message clear function reudx
+    }
+    if (successMessage) {
+      toast.success(successMessage)
+      dispatch(messageClear()) //message clear function reudx
+      setState({
+        name: '',
+        description: '',
+        discount: '',
+        price: '',
+        brand: '',
+        stock: ''
+      })
+      setImages([])
+      setImageShow([])
+      setCategory('')
+    }
+  }, [errorMessage, successMessage])
   return (
     <div>
-      <div className="px-2 lg:px-5 pb-6 ">
+      <div className="px-2 md:px-5 pb-6 ">
         {/*  Breadcrumbs */}
         <div className="flex justify-start text-center text-[#383737] font-bold items-center px-5 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
           <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -110,9 +160,15 @@ const AddProduct = () => {
           </ol>
         </div>
         {/* End Breadcrumbs  */}
-        <div className="w-full p-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+        <div className="w-full p-5 bg-white rounded-md shadow-md hover:shadow-indigo-200 relative">
+          {/* Overlay only displays when loading */}
+          {loader && (
+            <div className="absolute inset-0 bg-gray-50 bg-opacity-70 flex justify-center items-center z-10">
+              <ClipLoader color="#4A90E2" size={30} />
+            </div>
+          )}
           <div className="flex justify-between items-center text-[#383737] pb-1 border-b-2">
-            <h1 className="text-xl font-semibold">Add Product</h1>
+            <h1 className="text-xl font-semibold gap-2">Add Product</h1>
             <Link
               to="/seller/all-product"
               className="px-6 py-1 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-[2px] my-2 hover:bg-blue-500 hover:text-white"
@@ -122,7 +178,7 @@ const AddProduct = () => {
           </div>
           {/* table */}
           <div className="py-2">
-            <form>
+            <form onSubmit={add}>
               <div className="flex flex-col mb-3 md:flex-row gap-4 w-full text-[#383737]">
                 <div className="flex flex-col w-full gap-1">
                   <label htmlFor="name" className="font-semibold">
@@ -145,7 +201,7 @@ const AddProduct = () => {
                   </label>
                   <input
                     onChange={inputHandle}
-                    value={state.barnd}
+                    value={state.brand}
                     type="text"
                     name="brand"
                     id="brand"
@@ -321,7 +377,12 @@ const AddProduct = () => {
                 />
               </div>
               <div>
-                <button className="w-full md:w-auto px-7 py-2 font-semibold  rounded-md shadow-md my-2 bg-blue-900 text-white hover:scale-y-105 hover:shadow-indigo-200">
+                <button
+                  disabled={loader ? true : false}
+                  className={`w-full bg-blue-900 flex justify-center items-center gap-1 md:w-auto px-7 py-2 font-semibold rounded-md shadow-md my-2 hover:scale-y-105 text-white hover:shadow-indigo-200 
+                    ${loader ? ' text-gray-400 ' : ''}`}
+                >
+                  {loader ? <ClipLoader size={18} color="#ffffff" /> : ''}
                   Add Product
                 </button>
               </div>

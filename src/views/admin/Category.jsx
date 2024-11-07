@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import { FaEdit, FaHome, FaImage, FaTrash } from 'react-icons/fa'
 import { IoIosArrowForward, IoMdCloseCircle } from 'react-icons/io'
-import { PropagateLoader } from 'react-spinners'
+import { ClipLoader, PropagateLoader } from 'react-spinners'
 import { overrideStyle } from '../../utils/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCategory, getCategory, messageClear } from '../../store/Reducers/categoryReducer'
@@ -13,8 +13,9 @@ import Search from '../components/Search'
 const Category = () => {
   const dispatch = useDispatch()
   const { loader, errorMessage, successMessage, categories, totalCategory } = useSelector(
-    (state) => state.category ?? {}
+    (state) => state.category
   ) //state loader
+
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [searchValue, setsearchValue] = useState('')
@@ -43,12 +44,6 @@ const Category = () => {
     dispatch(addCategory(state))
   }
 
-  const obj = {
-    parPage: parseInt(parPage),
-    page: parseInt(currentPage),
-    searchValue
-  }
-
   // use Effect check toast message error
   useEffect(() => {
     if (errorMessage) {
@@ -64,17 +59,21 @@ const Category = () => {
         image: ''
       })
       setImage('')
-      dispatch(getCategory(obj))
     }
   }, [errorMessage, successMessage, dispatch])
 
   useEffect(() => {
+    // object
+    const obj = {
+      parPage: parseInt(parPage),
+      page: parseInt(currentPage),
+      searchValue
+    }
     dispatch(getCategory(obj))
   }, [searchValue, currentPage, parPage, dispatch])
 
-  console.log(categories)
   return (
-    <div className="px-2 lg:px-5 pb-5 ">
+    <div className="px-2 md:px-5 pb-5 ">
       {/*  Breadcrumbs */}
       <div className="flex justify-start text-center text-[#383737] font-bold items-center px-5 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -162,27 +161,37 @@ const Category = () => {
           <div className="flex w-full justify-between items-center mt-2 ">
             <span className="text-sm text-gray-700 dark:text-gray-400">
               Showing <span className="font-semibold text-[#383737]">{currentPage}</span>
-              to {totalCategory}
-              <span className="font-semibold text-[#383737]">10</span> of
-              <span className="font-semibold text-[#383737]">100</span> Entries
+              to {parPage}
+              <span className="font-semibold text-[#383737]"> 10</span> of
+              <span className="font-semibold text-[#383737]"> 100</span> Entries
             </span>
-            <Pagination
-              pageNumber={currentPage}
-              setPageNumber={setCurrentPage}
-              totalItem={50}
-              parPage={parPage}
-              showItem={3}
-            />
+            {totalCategory <= parPage ? (
+              ''
+            ) : (
+              <Pagination
+                pageNumber={currentPage}
+                setPageNumber={setCurrentPage}
+                totalItem={totalCategory}
+                parPage={parPage}
+                showItem={3}
+              />
+            )}
           </div>
           {/* end Paginantion */}
         </div>
         {/*  */}
         <div
-          className={`w-[320px] lg:w-4/12 translate-x-100 lg:relative lg:right-0 fixed ${
+          className={`w-[320px] lg:w-4/12 translate-x-100 fixed lg:relative lg:right-0 ${
             show ? 'right-0' : '-right-[340px]'
-          } z-[9999] top-0 transition-all duration-500`}
+          } z-[40] top-0 transition-all duration-500`}
         >
-          <div className="w-full pl-5">
+          <div className="w-full pl-5 relative">
+            {/* Overlay only displays when loading */}
+            {loader && (
+              <div className="absolute inset-0 bg-gray-50 bg-opacity-70 flex justify-center items-center z-10">
+                <ClipLoader color="#4A90E2" size={30} />
+              </div>
+            )}
             <div className="h-screen lg:h-auto p-5 rounded-md shadow-md hover:shadow-indigo-200 bg-white">
               <h1 className="font-bold text-xl p-2 mb-4 w-full text-center border-b bg-gray-200 uppercase">
                 Add Category
@@ -241,13 +250,11 @@ const Category = () => {
                   />
                   <button
                     disabled={loader ? true : false}
-                    className="w-full px-7 py-2 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-2 my-3 hover:bg-blue-500 hover:text-white hover:shadow-indigo-200"
+                    className="w-full px-7 py-2 flex justify-center items-center font-semibold text-blue-500 rounded-md shadow-md
+                     border-blue-500 border-2 my-3 hover:bg-blue-500 hover:text-white hover:shadow-indigo-200 gap-1"
                   >
-                    {loader ? (
-                      <PropagateLoader size={10} color="#3c57ee" cssOverride={overrideStyle} />
-                    ) : (
-                      'Add Category'
-                    )}
+                    {loader ? <ClipLoader size={18} color="#3c57ee" /> : ''}
+                    Add Category
                   </button>
                 </div>
               </form>

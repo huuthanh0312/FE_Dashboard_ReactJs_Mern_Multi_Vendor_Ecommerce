@@ -21,13 +21,13 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         onClick={() => setShowSidebar(false)}
         className={`fixed duration-200 
           ${!showSidebar ? 'invisible' : 'visible'}
-          w-screen h-screen bg-[#22292f89] top-0 left-0 z-10`}
+          w-screen h-screen bg-[#22292f89] top-0 left-0 z-20`}
       ></div>
       <div
-        className={`w-[260px] fixed bg-[#ffffff] z-50 top-0 h-screen shadow-lg shadow-slate-400 transition-all
+        className={`w-[260px] fixed bg-[#ffffff] z-[9999] top-0 h-screen shadow-lg shadow-slate-400 transition-all
           ${showSidebar ? 'left-0' : '-left-[260px] lg:left-0'}`}
       >
-        <div className="h-[70px] flex justify-center items-center mb-2 py-2 border-b-2">
+        <div className="h-[69px] flex justify-center items-center mb-2 py-2 shadow-lg">
           <Link to="/" className="w-[180px] h-[55px]">
             <img
               src="http://localhost:3000/images/logo-admin.png"
