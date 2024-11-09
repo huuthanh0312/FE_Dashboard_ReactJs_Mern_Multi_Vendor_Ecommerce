@@ -19,8 +19,8 @@ export const addCategory = createAsyncThunk(
 )
 
 // Get Category
-export const getCategory = createAsyncThunk(
-  'category/getCategory',
+export const getCategories = createAsyncThunk(
+  'category/getCategoryList',
   async ({ parPage, page, searchValue }, { rejectWithValue, fulfillWithValue }) => {
     try {
       const { data } = await api.get(
@@ -70,7 +70,7 @@ export const categoryReducer = createSlice({
         state.categories = [payload.category, ...state.categories]
       })
       //get Category
-      .addCase(getCategory.fulfilled, (state, { payload }) => {
+      .addCase(getCategories.fulfilled, (state, { payload }) => {
         // get status and data BE success 200
         state.categories = payload.categories
         state.totalCategory = payload.totalCategory

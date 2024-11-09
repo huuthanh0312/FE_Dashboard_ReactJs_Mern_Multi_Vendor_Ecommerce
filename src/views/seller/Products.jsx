@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { LuArrowDownSquare } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import { FaEdit, FaEye, FaHome, FaTrash } from 'react-icons/fa'
 import { IoIosArrowForward } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProduct } from '../../store/Reducers/productReducer'
-import { toast } from 'react-hot-toast'
+import { getProducts } from '../../store/Reducers/productReducer'
 
 const Products = () => {
   const dispatch = useDispatch()
@@ -23,7 +21,7 @@ const Products = () => {
       page: parseInt(currentPage),
       searchValue
     }
-    dispatch(getProduct(obj))
+    dispatch(getProducts(obj))
   }, [searchValue, currentPage, parPage, dispatch])
 
   return (
@@ -128,7 +126,7 @@ const Products = () => {
                         <FaEye></FaEye>
                       </Link>
                       <Link
-                        to={`/seller/edit-product/32`}
+                        to={`/seller/edit-product/${d._id}`}
                         className="p-[6px] border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110"
                       >
                         <FaEdit></FaEdit>

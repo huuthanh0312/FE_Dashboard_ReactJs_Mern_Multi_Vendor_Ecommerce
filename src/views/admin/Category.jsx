@@ -6,7 +6,7 @@ import { IoIosArrowForward, IoMdCloseCircle } from 'react-icons/io'
 import { ClipLoader, PropagateLoader } from 'react-spinners'
 import { overrideStyle } from '../../utils/utils'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCategory, getCategory, messageClear } from '../../store/Reducers/categoryReducer'
+import { addCategory, getCategories, messageClear } from '../../store/Reducers/categoryReducer'
 import toast from 'react-hot-toast'
 import Search from '../components/Search'
 
@@ -69,7 +69,7 @@ const Category = () => {
       page: parseInt(currentPage),
       searchValue
     }
-    dispatch(getCategory(obj))
+    dispatch(getCategories(obj))
   }, [searchValue, currentPage, parPage, dispatch])
 
   return (

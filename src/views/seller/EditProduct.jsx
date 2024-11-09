@@ -1,18 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import { FaHome } from 'react-icons/fa'
 import { IoIosArrowForward, IoMdCloseCircle, IoMdImages } from 'react-icons/io'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCategories } from '../../store/Reducers/categoryReducer'
+import {
+  getProduct,
+  messageClear,
+  updateProduct,
+  updateProductImage
+} from '../../store/Reducers/productReducer'
+import toast from 'react-hot-toast'
+import { ClipLoader } from 'react-spinners'
 
 const EditProduct = () => {
-  const categories = [
-    { id: 1, name: 'Sports' },
-    { id: 2, name: 'Tshirt' },
-    { id: 3, name: 'Mobile' },
-    { id: 4, name: 'Computer' },
-    { id: 5, name: 'Wacth' },
-    { id: 6, name: 'Pant' }
-  ]
+  const dispatch = useDispatch()
+  const { categories } = useSelector((state) => state.category) //state loader
+  const { productId } = useParams()
+  const { loader, errorMessage, successMessage, product } = useSelector((state) => state.product) //state loader
 
+  // get info categories
+  useEffect(() => {
+    dispatch(getCategories({ searchValue: '', parPage: '', page: '' }))
+  }, [])
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      setAllCategory(categories)
+    }
+  })
+
+  // get data product by id
+  useEffect(() => {
+    dispatch(getProduct(productId))
+  }, [productId])
+
+  //initialize data form
   const [state, setState] = useState({
     name: '',
     description: '',
@@ -21,11 +44,12 @@ const EditProduct = () => {
     brand: '',
     stock: ''
   })
+
   const inputHandle = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
 
-  //search anh choose category
+  //search and choose category
   const [cateShow, setCateShow] = useState(false)
   const [category, setCategory] = useState('')
   const [allCategory, setAllCategory] = useState(categories)
@@ -50,7 +74,7 @@ const EditProduct = () => {
   const [imageShow, setImageShow] = useState([])
 
   const imageHandle = (e) => {
-    console.log(e.target.files)
+    //console.log(e.target.files)
     const files = e.target.files
     const length = files.length
     if (length > 0) {
@@ -62,25 +86,20 @@ const EditProduct = () => {
       setImageShow([...imageShow, ...imageUrl])
     }
   }
-  // change Image
-  // const changeImage = (img, index) => {
-  //   if (img) {
-  //     let tempUrl = imageShow
-  //     let tempImages = images
 
-  //     tempImages[index] = img
-  //     tempUrl[index] = { url: URL.createObjectURL(img) }
-
-  //     setImageShow([...tempUrl])
-  //     setImages([...tempImages])
-  //   }
-  // }
+  //change Image
   const changeImage = (img, files) => {
     if (files.length > 0) {
-      console.log(img)
-      console.log(files[0])
+      dispatch(
+        updateProductImage({
+          productId: productId,
+          oldImage: img,
+          newImage: files[0]
+        })
+      )
     }
   }
+
   // remove Image
   // const removeImage = (i) => {
   //   const filterImage = images.filter((img, index) => index !== i)
@@ -90,22 +109,47 @@ const EditProduct = () => {
   //   setImages(filterImage)
   // }
 
-  //
+  //get data fetch product by Id
   useEffect(() => {
     setState({
-      name: 'Mens tShirt',
-      description: 'Ultilities for controls',
-      discount: '10',
-      price: '454',
-      brand: 'Sport',
-      stock: '45'
+      name: product.name,
+      description: product.description,
+      discount: product.discount,
+      price: product.price,
+      brand: product.brand,
+      stock: product.stock
     })
-    setCategory('Tshirt')
-    setImageShow([
-      'http://localhost:3000/images/admin.png',
-      'http://localhost:3000/images/admin.png'
-    ])
-  }, [])
+    setCategory(product.category)
+    setImageShow(product.images)
+  }, [product])
+
+  //submit form update product
+  const update = (e) => {
+    e.preventDefault()
+    const obj = {
+      productId: productId,
+      name: state.name,
+      description: state.description,
+      discount: state.discount,
+      price: state.price,
+      brand: state.brand,
+      stock: state.stock,
+      category: category
+    }
+    dispatch(updateProduct(obj))
+  }
+
+  // use Effect check toast message error
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage)
+      dispatch(messageClear()) //message clear function reudx
+    }
+    if (successMessage) {
+      toast.success(successMessage)
+      dispatch(messageClear()) //message clear function reudx
+    }
+  }, [errorMessage, successMessage])
   return (
     <div>
       <div className="px-2 md:px-5 pb-6 ">
@@ -132,11 +176,17 @@ const EditProduct = () => {
           </ol>
         </div>
         {/* End Breadcrumbs  */}
-        <div className="w-full p-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
+        <div className="w-full p-5 bg-white rounded-md shadow-md hover:shadow-indigo-200 relative">
+          {/* Overlay only displays when loading */}
+          {loader && (
+            <div className="absolute inset-0 bg-gray-50 bg-opacity-70 flex justify-center items-center z-10">
+              <ClipLoader color="#4A90E2" size={50} />
+            </div>
+          )}
           <div className="flex justify-between items-center text-[#383737] pb-1 border-b-2">
             <h1 className="text-xl font-semibold">Edit Product</h1>
             <Link
-              to="/seller/all-product"
+              to="/seller/all-products"
               className="px-6 py-1 font-semibold text-blue-500 rounded-md shadow-md border-blue-500 border-[2px] my-2 hover:bg-blue-500 hover:text-white"
             >
               All Product
@@ -144,7 +194,7 @@ const EditProduct = () => {
           </div>
           {/* table */}
           <div className="py-2">
-            <form>
+            <form onSubmit={update}>
               <div className="flex flex-col mb-3 md:flex-row gap-4 w-full text-[#383737]">
                 <div className="flex flex-col w-full gap-1">
                   <label htmlFor="name" className="font-semibold">
@@ -167,7 +217,7 @@ const EditProduct = () => {
                   </label>
                   <input
                     onChange={inputHandle}
-                    value={state.barnd}
+                    value={state.brand}
                     type="text"
                     name="brand"
                     id="brand"
@@ -210,21 +260,23 @@ const EditProduct = () => {
                       </div>
                       <div className="pt-14"></div>
                       <div className="flex justify-start items-start flex-col h-[200px] overflow-y-scroll p-4 font-semibold">
-                        {allCategory.map((c, i) => (
-                          <span
-                            onClick={() => {
-                              setCateShow(false)
-                              setCategory(c.name)
-                              setSearchValue('')
-                              setAllCategory(categories)
-                            }}
-                            className={`w-full hover:bg-indigo-500 p-2 cursor-pointer ${
-                              category === c.name && 'bg-indigo-500'
-                            }`}
-                          >
-                            {c.name}
-                          </span>
-                        ))}
+                        {allCategory.length > 0 &&
+                          allCategory.map((c, i) => (
+                            <span
+                              key={i}
+                              onClick={() => {
+                                setCateShow(false)
+                                setCategory(c.name)
+                                setSearchValue('')
+                                setAllCategory(categories)
+                              }}
+                              className={`w-full hover:bg-indigo-500 p-2 cursor-pointer ${
+                                category === c.name && 'bg-indigo-500'
+                              }`}
+                            >
+                              {c.name}
+                            </span>
+                          ))}
                       </div>
                     </div>
                   </div>
@@ -237,7 +289,7 @@ const EditProduct = () => {
                   <input
                     onChange={inputHandle}
                     value={state.stock}
-                    type="text"
+                    type="number"
                     name="stock"
                     id="stock"
                     className="px-4 py-2 border-gray-400 focus:border-indigo-500 outline-none border rounded-md"
@@ -301,27 +353,32 @@ const EditProduct = () => {
               {/* image */}
               <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:gap-6 gap-3 w-full mb-4 pt-2">
                 {/* images show */}
-                {imageShow.map((img, i) => (
-                  <div className="h-[180px] relative rounded-md shadow-lg border sm:hover:scale-105 hover:shadow-indigo-200">
-                    <label htmlFor={i} className="flex justify-center items-center ">
-                      <img src={img} alt="" className="h-[175px] rounded-md" />
-                    </label>
-                    {/* change image */}
-                    <input
-                      type="file"
-                      onChange={(e) => changeImage(img, e.target.files)}
-                      id={i}
-                      className="hidden"
-                    />
-                    {/* end */}
-                    <span
-                      // onClick={() => removeImage(i)}
-                      className="absolute top-1 right-1 p-1 z-10 cursor-pointer border-2 border-red-500 rounded-full shadow-lg text-red-900 hover:scale-105 hover:shadow-red-300"
+                {imageShow &&
+                  imageShow.length > 0 &&
+                  imageShow.map((img, i) => (
+                    <div
+                      key={i}
+                      className="h-[180px] relative rounded-md shadow-lg border sm:hover:scale-105 hover:shadow-indigo-200"
                     >
-                      <IoMdCloseCircle size={18} />
-                    </span>
-                  </div>
-                ))}
+                      <label htmlFor={i} className="flex justify-center items-center ">
+                        <img src={img} alt="" className="h-[175px] rounded-md" />
+                      </label>
+                      {/* change image */}
+                      <input
+                        type="file"
+                        onChange={(e) => changeImage(img, e.target.files)}
+                        id={i}
+                        className="hidden"
+                      />
+                      {/* end */}
+                      {/* <span
+                        // onClick={() => removeImage(i)}
+                        className="absolute top-1 right-1 p-1 z-1 cursor-pointer border-2 border-red-500 rounded-full shadow-lg text-red-900 hover:scale-105 hover:shadow-red-300"
+                      >
+                        <IoMdCloseCircle size={18} />
+                      </span> */}
+                    </div>
+                  ))}
                 {/* end images show */}
                 <label
                   htmlFor="image"
@@ -343,7 +400,12 @@ const EditProduct = () => {
                 />
               </div>
               <div>
-                <button className="w-full md:w-auto px-7 py-2 font-semibold  rounded-md shadow-md my-2 bg-blue-900 text-white hover:scale-y-105 hover:shadow-indigo-200">
+                <button
+                  disabled={loader ? true : false}
+                  className={`w-full bg-blue-900 flex justify-center items-center gap-1 md:w-auto px-7 py-2 font-semibold rounded-md shadow-md my-2 hover:scale-y-105 text-white hover:shadow-indigo-200 
+                    ${loader ? ' text-gray-400 ' : ''}`}
+                >
+                  {loader ? <ClipLoader size={18} color="#ffffff" /> : ''}
                   Save Changes
                 </button>
               </div>

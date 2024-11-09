@@ -3,11 +3,10 @@ import { FaHome } from 'react-icons/fa'
 import { IoIosArrowForward, IoMdCloseCircle, IoMdImages } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCategory, messageClear } from '../../store/Reducers/categoryReducer'
+import { getCategories, messageClear } from '../../store/Reducers/categoryReducer'
 import { addProduct } from '../../store/Reducers/productReducer'
 import toast from 'react-hot-toast'
-import { ClipLoader, PuffLoader } from 'react-spinners'
-import { overrideStyle, overrideStyleClipLoader } from '../../utils/utils'
+import { ClipLoader } from 'react-spinners'
 
 const AddProduct = () => {
   const dispatch = useDispatch()
@@ -21,7 +20,7 @@ const AddProduct = () => {
 
   // get info categories
   useEffect(() => {
-    dispatch(getCategory({ searchValue: '', parPage: '', page: '' }))
+    dispatch(getCategories({ searchValue: '', parPage: '', page: '' }))
   }, [])
 
   const [state, setState] = useState({
@@ -164,7 +163,7 @@ const AddProduct = () => {
           {/* Overlay only displays when loading */}
           {loader && (
             <div className="absolute inset-0 bg-gray-50 bg-opacity-70 flex justify-center items-center z-10">
-              <ClipLoader color="#4A90E2" size={30} />
+              <ClipLoader color="#4A90E2" size={50} />
             </div>
           )}
           <div className="flex justify-between items-center text-[#383737] pb-1 border-b-2">
@@ -271,7 +270,7 @@ const AddProduct = () => {
                   <input
                     onChange={inputHandle}
                     value={state.stock}
-                    type="text"
+                    type="number"
                     name="stock"
                     id="stock"
                     className="px-4 py-2 border-gray-400 focus:border-indigo-500 outline-none border rounded-md"
