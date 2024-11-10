@@ -79,6 +79,35 @@ const returnRole = (token) => {
   }
 }
 
+
+//update Profile Image By Id
+export const uploadSellerProfileImage = createAsyncThunk(
+  'auth/uploadSellerProfileImage',
+  async (image, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.post(`/seller/profile/image-upload`, image, { withCredentials: true })
+      //console.log(data)
+      return fulfillWithValue(data)
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)
+
+//Change Profile Info By Id
+export const changeSellerInfo = createAsyncThunk(
+  'auth/changeSellerInfo',
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      console.log(info)
+      const { data } = await api.post(`/seller/profile/info`, info, { withCredentials: true })
+      return fulfillWithValue(data)
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)
+
 export const authReducer = createSlice({
   name: 'auth',
   initialState: {
@@ -154,6 +183,39 @@ export const authReducer = createSlice({
         // get status and data BE success 200
         state.loader = false
         state.userInfo = payload.userInfo
+      })
+      //seller image upload profile
+      .addCase(uploadSellerProfileImage.pending, (state, { payload }) => {
+        // get status and data BE pending 404
+        state.loader = true
+      })
+      .addCase(uploadSellerProfileImage.rejected, (state, { payload }) => {
+        // get status and data BE pending 404
+        state.loader = false
+        state.errorMessage = payload.error
+      })
+      .addCase(uploadSellerProfileImage.fulfilled, (state, { payload }) => {
+        // get status and data BE success 200
+        state.loader = false
+        state.userInfo = payload.userInfo
+        state.successMessage = payload.message
+      })
+      //Change Seller Info
+      .addCase(changeSellerInfo.pending, (state, { payload }) => {
+        // get status and data BE pending 404
+        state.loader = true
+      })
+      .addCase(changeSellerInfo.rejected, (state, { payload }) => {
+        // get status and data BE pending 404
+        state.loader = false
+        state.errorMessage = payload.error
+      })
+      .addCase(changeSellerInfo.fulfilled, (state, { payload }) => {
+        // get status and data BE success 200
+        state.loader = false
+        state.userInfo = payload.userInfo
+        state.successMessage = payload.message
+
       })
   }
 })
