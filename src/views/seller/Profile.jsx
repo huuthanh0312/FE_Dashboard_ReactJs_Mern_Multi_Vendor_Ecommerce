@@ -14,7 +14,6 @@ import toast from 'react-hot-toast'
 const Profile = () => {
   const dispatch = useDispatch()
   const { userInfo, loader, successMessage, errorMessage } = useSelector((state) => state.auth) //state loader
-  const status = 'active'
 
   //upload image profile
   const addProfileImage = (e) => {
@@ -144,7 +143,7 @@ const Profile = () => {
                 <div className="flex gap-2 ">
                   <span className="font-semibold">Payment Acount:</span>
                   <p>
-                    {status === 'active' ? (
+                    {userInfo.status === 'active' ? (
                       <span className="bg-green-500 text-xs cursor-pointer font-normal ml-2 px-2 py-0.5 rounded-md text-white">
                         {userInfo.payment}
                       </span>

@@ -111,7 +111,7 @@ const Category = () => {
             setSearchValue={setsearchValue}
             searchValue={searchValue}
           />
-          <div className="relative overflow-x-auto pt-4 ">
+          <div className="relative overflow-x-auto pt-4">
             <table className="w-full text-sm text-left rounded-md shadow-md">
               <thead className="uppercase border bg-[#E5E5E5]">
                 <tr>
@@ -132,16 +132,12 @@ const Category = () => {
               <tbody>
                 {categories.map((d, i) => (
                   <tr key={i} className="hover:bg-gray-100 border">
-                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                      {i + 1}
-                    </td>
-                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+                    <td className="py-1 px-4 font-medium whitespace-nowrap">{i + 1}</td>
+                    <td className="py-1 px-4 font-medium whitespace-nowrap">
                       <img className="w-[45px] h-[45px]" src={d.image} alt="" />
                     </td>
-                    <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                      {d.name}
-                    </td>
-                    <td scope="row" className="py-1 px-4 whitespace-nowrap">
+                    <td className="py-1 px-4 font-medium whitespace-nowrap">{d.name}</td>
+                    <td className="py-1 px-4 whitespace-nowrap">
                       <div className="flex justify-start items-center gap-4">
                         <Link className="p-[6px] border-2 border-yellow-500 rounded-md shadow-md hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
                           <FaEdit></FaEdit>

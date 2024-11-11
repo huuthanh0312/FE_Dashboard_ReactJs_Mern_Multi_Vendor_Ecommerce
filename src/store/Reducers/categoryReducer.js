@@ -20,7 +20,7 @@ export const addCategory = createAsyncThunk(
 
 // Get Category
 export const getCategories = createAsyncThunk(
-  'category/getCategoryList',
+  'category/getCategories',
   async ({ parPage, page, searchValue }, { rejectWithValue, fulfillWithValue }) => {
     try {
       const { data } = await api.get(
