@@ -1,3 +1,6 @@
+import config from './config'
+import io from 'socket.io-client'
+
 //style css PropagateLoader spinners
 export const overrideStyle = {
   display: 'flex',
@@ -14,3 +17,6 @@ export const overrideStyleClipLoader = {
   justifyContent: 'center',
   alignItems: 'center'
 }
+
+// connect socket backend expressjs
+export const socket = io(`${config.API_URL}`)

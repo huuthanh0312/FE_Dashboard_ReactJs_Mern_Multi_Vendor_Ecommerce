@@ -51,12 +51,12 @@ const Register = () => {
     }
   }
   return (
-    <div className="min-w-screen min-h-screen bg-[url('http://localhost:3000/images/bgedit.png')] bg-cover bg-gray-700 flex justify-center items-center ">
+    <div className="min-w-screen min-h-screen bg-[url('http://localhost:3000/images/bgedit.png')] bg-cover bg-slate-700 flex justify-center items-center ">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto ">
         <div className="w-[320px] sm:w-[360px] relative text-black p-1 border-slate-500">
           <div className="bg-[#ffffff] p-4 rounded-3xl shadow-md hover:shadow-blue-400 mx-auto">
             <h2 className="text-2xl font-bold text-center mb-2 uppercase">
-              Thanh Shop Sign Up! 👋
+              Thanh Shop Sign Up To Seller! 👋
             </h2>
             <div className="text-center">
               <span className="mb-2 font-mono">Please register your account!</span>

@@ -55,7 +55,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
               </li>
             ))}
             <li>
-              <button className="text-[#383737] font-bold duration-200 hover:bg-indigo-50 cursor-pointer px-3 py-2 rounded-md flex justify-start items-center gap-2 hover:pl-4 transition-all w-full mb-1">
+              <button className="text-[#383737] font-bold duration-200 hover:bg-indigo-50 cursor-pointer px-3 py-2 rounded-md flex justify-start items-center gap-2 hover:pl-4 transition-all w-full mb-1 border-t">
                 <span>
                   <FaSignOutAlt />
                 </span>

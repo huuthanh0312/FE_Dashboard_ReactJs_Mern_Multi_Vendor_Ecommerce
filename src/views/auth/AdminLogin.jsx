@@ -52,7 +52,7 @@ const AdminLogin = () => {
     }
   }
   return (
-    <div className="min-w-screen min-h-screen bg-[url('http://localhost:3000/images/bgedit.png')] bg-gray-700 flex justify-center items-center bg-cover">
+    <div className="min-w-screen min-h-screen bg-[url('http://localhost:3000/images/bgedit.png')] bg-slate-700 flex justify-center items-center bg-cover">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto ">
         <div className="w-[320px] sm:w-[360px] relative text-black p-1 border-slate-500">
           <div className="bg-[#f4f4f5] p-4 rounded-3xl shadow-lg hover:shadow-blue-400 mx-auto">
@@ -61,7 +61,7 @@ const AdminLogin = () => {
                 <img src="/images/logo-admin.png" className="w-full h-full" alt="" />
               </div>
             </div>
-            <h3 className="font-semibold text-lg text-center">Admin 👋</h3>
+            <h3 className="font-mono text-lg text-center">Welcome to Admin 👋</h3>
             <form onSubmit={submit}>
               <div className="flex flex-col w-full gap-1 mb-3 relative">
                 <label htmlFor="email">Email</label>

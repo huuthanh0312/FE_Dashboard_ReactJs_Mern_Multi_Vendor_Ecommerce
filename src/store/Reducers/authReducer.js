@@ -79,13 +79,14 @@ const returnRole = (token) => {
   }
 }
 
-
 //update Profile Image By Id
 export const uploadSellerProfileImage = createAsyncThunk(
   'auth/uploadSellerProfileImage',
   async (image, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.post(`/seller/profile/image-upload`, image, { withCredentials: true })
+      const { data } = await api.post(`/seller/profile/image-upload`, image, {
+        withCredentials: true
+      })
       //console.log(data)
       return fulfillWithValue(data)
     } catch (error) {
@@ -122,6 +123,7 @@ export const authReducer = createSlice({
     // message clear function reudx
     messageClear: (state, _) => {
       state.errorMessage = ''
+      state.successMessage = ''
     }
   },
   // loader check state
@@ -215,7 +217,6 @@ export const authReducer = createSlice({
         state.loader = false
         state.userInfo = payload.userInfo
         state.successMessage = payload.message
-
       })
   }
 })

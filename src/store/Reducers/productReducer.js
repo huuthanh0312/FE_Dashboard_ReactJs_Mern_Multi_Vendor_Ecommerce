@@ -51,7 +51,9 @@ export const updateProduct = createAsyncThunk(
   'product/updateProduct',
   async (product, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.put(`/products/${product.productId}`, product, { withCredentials: true })
+      const { data } = await api.put(`/products/${product.productId}`, product, {
+        withCredentials: true
+      })
       //console.log(data)
       return fulfillWithValue(data)
     } catch (error) {
@@ -59,7 +61,6 @@ export const updateProduct = createAsyncThunk(
     }
   }
 )
-
 
 //update Product Image By Id
 export const updateProductImage = createAsyncThunk(
@@ -69,7 +70,9 @@ export const updateProductImage = createAsyncThunk(
       const formData = new FormData()
       formData.append('oldImage', oldImage)
       formData.append('newImage', newImage)
-      const { data } = await api.put(`/products/${productId}/image`, formData, { withCredentials: true })
+      const { data } = await api.put(`/products/${productId}/image`, formData, {
+        withCredentials: true
+      })
       console.log(data)
       return fulfillWithValue(data)
     } catch (error) {
@@ -77,7 +80,6 @@ export const updateProductImage = createAsyncThunk(
     }
   }
 )
-
 
 export const productReducer = createSlice({
   name: 'product',
@@ -93,6 +95,7 @@ export const productReducer = createSlice({
     // message clear function reudx
     messageClear: (state, _) => {
       state.errorMessage = ''
+      state.successMessage = ''
     }
   },
   // loader check state

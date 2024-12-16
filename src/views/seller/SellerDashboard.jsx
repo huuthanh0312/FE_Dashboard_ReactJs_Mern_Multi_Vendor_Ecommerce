@@ -1,5 +1,4 @@
 import React from 'react'
-import { FaShoppingCart, FaUser, FaUsers } from 'react-icons/fa'
 import {
   MdCurrencyExchange,
   MdOutlineAddShoppingCart,
@@ -239,7 +238,7 @@ const SellerDashboard = () => {
               </thead>
               <tbody>
                 {[1, 2, 3, 4, 5].map((d, i) => (
-                  <tr className="hover:bg-gray-100 border">
+                  <tr key={i} className="hover:bg-gray-100 border">
                     <td scope="row" className="py-3 px-4 font-medium whitespace-nowrap">
                       #343444
                     </td>

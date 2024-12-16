@@ -59,6 +59,7 @@ export const sellerReducer = createSlice({
     // message clear function reudx
     messageClear: (state, _) => {
       state.errorMessage = ''
+      state.successMessage = ''
     }
   },
   // loader check state

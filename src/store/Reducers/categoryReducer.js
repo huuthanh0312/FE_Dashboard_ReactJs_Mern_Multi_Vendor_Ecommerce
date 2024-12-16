@@ -48,6 +48,7 @@ export const categoryReducer = createSlice({
     // message clear function reudx
     messageClear: (state, _) => {
       state.errorMessage = ''
+      state.successMessage = ''
     }
   },
   // loader check state

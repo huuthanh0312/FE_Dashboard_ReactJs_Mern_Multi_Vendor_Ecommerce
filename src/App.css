@@ -51,8 +51,8 @@
 /* crollbar  */
 /* Tạo kiểu cho toàn bộ thanh cuộn */
 ::-webkit-scrollbar {
-  width: 6px; /* Độ rộng thanh cuộn */
-  height: 6px; /* Độ rộng thanh cuộn ngang */
+  width: 8px; /* Độ rộng thanh cuộn */
+  height: 8px; /* Độ rộng thanh cuộn ngang */
 }
 
 /* Tạo kiểu cho thanh cuộn khi kéo */
