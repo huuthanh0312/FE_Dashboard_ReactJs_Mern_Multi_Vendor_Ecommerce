@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { getNav } from '../navigation'
 import { FaLongArrowAltUp, FaSignOutAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
+import Footer from './Footer'
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch()
@@ -21,13 +22,13 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         onClick={() => setShowSidebar(false)}
         className={`fixed duration-200 
           ${!showSidebar ? 'invisible' : 'visible'}
-          w-screen h-screen bg-[#22292f89] top-0 left-0 z-20`}
+          w-screen h-screen bg-[#22292f89] top-0 left-0 z-20 `}
       ></div>
       <div
-        className={`w-[260px] fixed bg-[#ffffff] z-[9999] top-0 h-screen shadow-lg shadow-slate-400 transition-all
+        className={`w-[260px] fixed bg-[#ffffff] z-[9999] top-0 h-screen flex flex-col shadow-md shadow-slate-400 transition-all
           ${showSidebar ? 'left-0' : '-left-[260px] lg:left-0'}`}
       >
-        <div className="h-[69px] flex justify-center items-center mb-2 py-2 shadow-lg">
+        <div className="h-[69px] flex justify-center items-center mb-2 py-2 shadow-md">
           <Link to="/" className="w-[180px] h-[55px]">
             <img
               src="http://localhost:3000/images/logo-admin.png"
@@ -37,7 +38,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           </Link>
         </div>
 
-        <div className="px-[16px] py-2">
+        <div className="px-[16px] py-2 flex-grow overflow-y-auto">
           <ul>
             {allNav.map((n, i) => (
               <li key={i}>
@@ -63,6 +64,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
               </button>
             </li>
           </ul>
+        </div>
+        {/* Footer */}
+        <div className="py-2">
+          <Footer />
         </div>
       </div>
     </div>

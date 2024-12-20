@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { FaList } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
 const Header = ({ showSidebar, setShowSidebar }) => {
+  const { userInfo } = useSelector((state) => state.auth)
   const [sticky, setSticky] = useState(false)
   //handle scroll function
   useEffect(() => {
@@ -51,12 +53,16 @@ const Header = ({ showSidebar, setShowSidebar }) => {
           <div className="flex justify-center items-center">
             <div className="flex justify-center items-center gap-3">
               <div className="flex justify-center items-center flex-col text-end">
-                <h2 className="text-md font-bold">Thanh Admin</h2>
-                <span className="text-[14px] w-full font-normal"> Admin</span>
+                <h2 className="text-md font-bold">{userInfo.name}</h2>
+                <span className="text-[14px] w-full font-normal">{userInfo.role}</span>
               </div>
               <img
-                className="w-[45px] h-[45px] border-2 border-sky-700 rounded-full"
-                src="http://localhost:3000/images/admin.png"
+                className="w-[45px] h-[45px] p-[2px] border-2 border-blue-700 rounded-full"
+                src={
+                  userInfo.image
+                    ? userInfo.image
+                    : 'http://localhost:3000/images/no_user_images.png'
+                }
                 alt=""
               />
             </div>

@@ -22,7 +22,7 @@ const Payments = () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   const Row = ({ index, style }) => {
     return (
-      <div style={style} className="flex text-sm font-semibold">
+      <div style={style} className="flex text-sm font-medium text-black">
         <div className="w-[10%] p-2 whitespace-nowrap">{index + 1}</div>
         <div className="w-[30%] p-2  whitespace-nowrap">$343434</div>
         <div className="w-[30%] p-2  whitespace-nowrap">
@@ -111,13 +111,13 @@ const Payments = () => {
               <form>
                 <div className="flex gap-3">
                   <input
-                    type="number"
+                    type="text"
                     min={0}
-                    className="px-3 py-2 w-full border-[2px] border-blue-900 hover:border-indigo-500 focus:border-indigo-500 outline-none rounded-md shadow-lg text-[#383737]"
+                    className="px-3 py-1.5 w-full border border-blue-900 hover:border-indigo-500 focus:border-indigo-500 outline-none rounded-md shadow-lg text-[#383737]"
                     name="amount"
                     placeholder="Search"
                   />
-                  <button className="px-6 py-1 font-semibold text-blue-900 rounded-md shadow-md border-blue-900 border-[2px] hover:bg-blue-900 hover:text-white">
+                  <button className="px-6 py-1 font-semibold rounded-md shadow-md border-blue-900 border text-white bg-blue-800 active:scale-95 active:translate-y-[2px] transform transition duration-150 ease-in-out">
                     Submit
                   </button>
                 </div>

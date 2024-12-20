@@ -10,8 +10,7 @@ import {
   sellerSendMessageToCustomer,
   updateMessageSellerAndCustomer
 } from '../../store/Reducers/chatReducer'
-import { AiOutlineMessage } from 'react-icons/ai'
-import { PiSelectionAllBold } from 'react-icons/pi'
+import { PiUserListBold, PiSelectionAllBold, PiListChecksBold } from 'react-icons/pi'
 import toast from 'react-hot-toast'
 import { socket } from './../../utils/utils'
 
@@ -46,14 +45,14 @@ const ChatToCustomer = () => {
       setReceiverMessage(msg)
     })
     socket.on('activeCustomer', (customers) => {
-      console.log(customers)
+      //console.log(customers)
       setActiveCustomer(customers)
     })
   }, [])
 
   //
   useEffect(() => {
-    console.log(receiverMessage)
+    //console.log(receiverMessage)
     if (!receiverMessage) return // Nếu không có tin nhắn, thoát khỏi useEffect
     // Kiểm tra tin nhắn có đến từ customer hiện tại và gửi cho seller hiện tại không
     const isMessageFromCurrentSeller =
@@ -62,9 +61,8 @@ const ChatToCustomer = () => {
     if (isMessageFromCurrentSeller) {
       dispatch(updateMessageSellerAndCustomer(receiverMessage)) // Cập nhật tin nhắn vào Redux
       toast.success(`${receiverMessage.senderName} sent a message`) // Hiển thị thông báo
-      dispatch(messageClear()) // Xóa tin nhắn trong Redux
     }
-  }, [receiverMessage, customerId])
+  }, [receiverMessage])
 
   // handleSenMessage
   const handleSendMessageCustomer = (e) => {
@@ -81,6 +79,7 @@ const ChatToCustomer = () => {
       setMessage('')
     }
   }
+
   // check send success push client message
   useEffect(() => {
     if (successMessage) {
@@ -101,6 +100,29 @@ const ChatToCustomer = () => {
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [seller_customer_messages])
+
+  // Cập nhật khi resize màn hình
+  useEffect(() => {
+    const handleResize = () => {
+      const currentIsXL = window.innerWidth >= 768
+      // Reset trạng thái show khi chuyển qua màn hình xl
+      if (currentIsXL) setShow(false)
+      // Lắng nghe sự kiện resize
+      window.addEventListener('resize', handleResize)
+    }
+    // Gọi handleResize lần đầu để đảm bảo state đúng khi component mount
+    handleResize()
+
+    // Cleanup event listener khi component unmount
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  //Khi click choose customer thì show huỷ
+  useEffect(() => {
+    if (customerId && show) {
+      setShow(false)
+    }
+  }, [customerId])
   return (
     <div>
       <div className="px-2 md:px-5 pb-5">
@@ -130,39 +152,44 @@ const ChatToCustomer = () => {
         <div className="w-full h-[calc(100vh-140px)] p-5 rounded-md shadow-md hover:shadow-indigo-200 bg-white ">
           <div className="flex w-full relative ">
             <div
-              className={`w-[320px] h-full absolute z-10 md:left-0 md:relative transition-all  ${
-                show ? '-left-5 -top-5' : '-left-[360px] top-0'
+              className={`md:w-96 w-64 sm:w-72 h-full absolute z-10 md:left-0 md:relative transition-all  ${
+                show ? '-left-5 -top-5' : '-left-[480px] top-0'
               }`}
             >
-              <div className="w-full h-[calc(100vh-177px)] bg-gradient-to-l from-[#E5E5E5] to-white rounded-md md:rounded-r-none shadow-md md:shadow-none md:bg-transparent overflow-y-auto border-r">
-                <div className="flex p-3 text-xl justify-between md:py-3 md:px-2 items-center border-b border-gray-300">
-                  <h2 className="inline-flex justify-center items-center gap-2 font-medium">
-                    <span>
-                      <AiOutlineMessage />
-                    </span>
-                    Customers
-                  </h2>
-                  <span onClick={() => setShow(!show)} className="block cursor-pointer md:hidden">
+              {/* // */}
+              <div className="w-full h-[calc(100vh-140px)] md:h-[calc(100vh-180px)] pb-7 md:pb-2 rounded-md rounded-br-none bg-gradient-to-l from-white to-[#eeeeee] shadow-[0px_0_2px_rgba(0,0,0,0.2)]">
+                <div
+                  className={`flex md:px-4 py-3 px-2 text-xl justify-between rounded-md rounded-b-none items-center border-b bg-blue-500 text-white`}
+                >
+                  <h2 className="font-medium">Customers</h2>
+                  <span
+                    onClick={() => setShow(!show)}
+                    className="block cursor-pointer hover:bg-blue-600 hover:rounded-full md:hidden p-1"
+                  >
                     <IoMdClose />
                   </span>
                 </div>
-                <div className="px-2">
+                <div className="p-2 overflow-y-auto">
                   {customers.map((c, i) => (
                     <Link key={i} to={`/seller/chat-customer/${c.friendId}`}>
                       <div
-                        className={`mt-2 px-2 py-1.5 flex justify-start gap-2 items-center rounded-md cursor-pointer shadow hover:bg-slate-200 hover:border-l-2 border-blue-500 transition-all ease-in-out duration-300
-                       ${customerId && c.friendId === customerId ? 'border-l-2 bg-white' : ''}`}
+                        className={`px-2 py-1.5 mb-1 flex justify-start gap-2 items-center rounded-md cursor-pointer hover:shadow-sm hover:bg-indigo-200 hover:border-l-2 border-blue-500 transition-all ease-in-out duration-200
+                       ${
+                         customerId && c.friendId === customerId
+                           ? 'border-l-2 bg-white shadow-sm'
+                           : ''
+                       }`}
                       >
                         <div className="relative">
                           <img
-                            className="w-[35px] h-35px] p-[2px] border-2 border-indigo-500 rounded-full"
+                            className="w-[35px] border rounded-full"
                             src={
                               c.image ? c.image : 'http://localhost:3000/images/no_user_images.png'
                             }
                             alt=""
                           />
                           {activeCustomer.some((a) => a.customerId === c.friendId) && (
-                            <div className="w-[12px] h-[12px] rounded-full bg-green-500 absolute right-0 bottom-0"></div>
+                            <div className="w-[10px] h-[10px] rounded-full bg-green-500 absolute right-0 bottom-0"></div>
                           )}
                         </div>
                         <div className="flex justify-center items-start flex-col w-full">
@@ -198,7 +225,7 @@ const ChatToCustomer = () => {
                               <div className="w-[12px] h-[12px] rounded-full bg-green-500 absolute right-0 bottom-0"></div>
                             )}
                           </div>
-                          <h2 className="text-base font-semibold text-gray-700">{c.name}</h2>
+                          <h2 className="text-base font-semibold text-[#383737]">{c.name}</h2>
                         </div>
                       )
                     }
@@ -213,7 +240,7 @@ const ChatToCustomer = () => {
                           alt=""
                         />
                       </div>
-                      <h2 className="text-base font-semibold text-gray-700">Select Customers</h2>
+                      <h2 className="text-base font-semibold text-[#383737]">Select Customers</h2>
                     </div>
                   </>
                 )}
@@ -222,13 +249,13 @@ const ChatToCustomer = () => {
                   className="flex w-[35px] md:hidden h-[35px] rounded-md bg-blue-500 shadow-lg justify-center items-center text-white hover:shadow-blue-500/50"
                 >
                   <span>
-                    <FaList />
+                    {show ? <PiListChecksBold size={20} /> : <PiUserListBold size={20} />}
                   </span>
                 </div>
               </div>
               <div className="py-3 ">
                 <div className="h-[calc(100vh-290px)] bg-[#e5e5e5] rounded-md p-3 overflow-y-auto">
-                  <div className="w-full flex flex-col gap-3">
+                  <div className={`w-full  flex flex-col gap-3 ${customerId ? '' : 'h-full'}`}>
                     {customerId ? (
                       seller_customer_messages.map((m, i) => {
                         if (m.senderId === customerId) {
@@ -250,8 +277,14 @@ const ChatToCustomer = () => {
                                     alt=""
                                   />
                                 </div>
-                                <div className="flex justify-center items-start flex-col w-full bg-white border shadow text-gray-600 px-2 py-1 rounded-tl-lg rounded-tr-lg rounded-br-lg">
+                                <div className="flex justify-center items-start flex-col w-full bg-white border shadow-md text-[#383737] px-2 py-1 rounded-tl-lg rounded-tr-lg rounded-br-lg">
                                   <span>{m.message}</span>
+
+                                  {/* <div className="justify-end items-end flex">
+                                    <p className="text-gray-500 text-[6px] font-normal leading-4 py-1">
+                                      {moment(m.createdAt).format('DD/MM/YYYY hh:mm A')}
+                                    </p>
+                                  </div> */}
                                 </div>
                               </div>
                             </div>
@@ -263,8 +296,8 @@ const ChatToCustomer = () => {
                               ref={messageEndRef}
                               className="w-full flex justify-end items-center"
                             >
-                              <div className="flex justify-start items-center gap-2  max-w-full lg:max-w-[85%]">
-                                <div className="flex justify-center items-start flex-col w-full bg-blue-500 border shadow text-white px-2 py-1 rounded-tl-lg rounded-tr-lg rounded-bl-lg">
+                              <div className="flex justify-start items-center gap-2 max-w-full lg:max-w-[85%]">
+                                <div className="flex justify-center items-start flex-col w-full bg-blue-500 shadow-md text-white px-2 py-1 rounded-tl-lg rounded-tr-lg rounded-bl-lg">
                                   <span>{m.message}</span>
                                 </div>
                                 <div>
@@ -285,11 +318,9 @@ const ChatToCustomer = () => {
                       })
                     ) : (
                       <div className="w-full h-full flex justify-center items-center text-lg rounded-md overflow-hidden">
-                        <div className="">
-                          <div className="flex items-center gap-2 font-medium ">
-                            <PiSelectionAllBold size={28} />
-                            <span>Select Customer ...</span>
-                          </div>
+                        <div className="w-full justify-center flex items-center gap-2 font-medium text-slate-600 ">
+                          <PiSelectionAllBold size={28} />
+                          <span>Select Customer...</span>
                         </div>
                       </div>
                     )}
@@ -301,6 +332,7 @@ const ChatToCustomer = () => {
                 className="flex gap-3 justify-center items-center"
               >
                 <input
+                  readOnly={customerId ? false : true}
                   type="text"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -308,7 +340,8 @@ const ChatToCustomer = () => {
                   placeholder="Input Your Message"
                 />
                 <button
-                  className="w-[70px] h-[35px] flex justify-center items-center font-semibold rounded-md shadow-md bg-blue-500 text-white 
+                  disabled={customerId ? false : true}
+                  className="w-[60px] h-[35px] flex justify-center items-center font-semibold rounded-md shadow-md bg-blue-500 text-white 
                     active:scale-95 active:translate-y-[2px] transform transition duration-150 ease-in-out"
                 >
                   <IoIosSend size={20} />
