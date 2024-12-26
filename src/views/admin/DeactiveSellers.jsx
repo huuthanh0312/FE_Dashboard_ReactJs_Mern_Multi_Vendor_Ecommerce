@@ -82,25 +82,45 @@ const DeactiveSellers = () => {
               </tr>
             </thead>
             <tbody>
-              {sellers.map((d, i) => (
+              {sellers.map((s, i) => (
                 <tr key={i} className="hover:bg-gray-100 border">
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">{i + 1}</td>
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">
                     <img
                       className="w-[40px] h-[40px] rounded-full"
-                      src={d.image ? d.image : '/images/no_user_images.png'}
+                      src={s.image ? s.image : '/images/no_user_images.png'}
                       alt=""
                     />
                   </td>
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.name}</td>
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.email}</td>
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.payment}</td>
-
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.status}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{s.name}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{s.email}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">
+                    {' '}
+                    <span
+                      className={`${
+                        s.payment === 'active' ? 'bg-green-500' : 'bg-red-500'
+                      } text-xs cursor-pointer font-normal px-2 py-0.5 rounded-md text-center text-white`}
+                    >
+                      {s.payment}
+                    </span>
+                  </td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">
+                    <span
+                      className={`${
+                        s.status === 'active'
+                          ? 'bg-green-500'
+                          : s.status === 'deactive'
+                          ? 'bg-red-500'
+                          : 'bg-indigo-500'
+                      } text-xs cursor-pointer font-normal px-2 py-0.5 rounded-md text-center text-white`}
+                    >
+                      {s.status}
+                    </span>
+                  </td>
                   <td className="py-1.5 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">
                       <Link
-                        to={`/admin/seller/details/${d._id}`}
+                        to={`/admin/seller/details/${s._id}`}
                         className="p-[6px] bg-gray-100 border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110"
                       >
                         <FaEye></FaEye>

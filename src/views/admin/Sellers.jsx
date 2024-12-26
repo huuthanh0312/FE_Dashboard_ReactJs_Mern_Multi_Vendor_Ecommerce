@@ -69,16 +69,16 @@ const Sellers = () => {
                   Shop Name
                 </th>
                 <th className="py-3 px-4" scope="col">
-                  Payment Status
-                </th>
-                <th className="py-3 px-4" scope="col">
                   Email
                 </th>
                 <th className="py-3 px-4" scope="col">
-                  Status
+                  District
                 </th>
                 <th className="py-3 px-4" scope="col">
-                  District
+                  Payment Status
+                </th>
+                <th className="py-3 px-4" scope="col">
+                  Status
                 </th>
                 <th className="py-3 px-4" scope="col">
                   Action
@@ -100,11 +100,31 @@ const Sellers = () => {
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">
                     {s.shopInfo?.shopName}
                   </td>
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{s.payment}</td>
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">{s.email}</td>
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{s.status}</td>
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">
                     {s.shopInfo?.district}
+                  </td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">
+                    <span
+                      className={`${
+                        s.payment === 'active' ? 'bg-green-500' : 'bg-red-500'
+                      } text-xs cursor-pointer font-normal px-2 py-0.5 rounded-md text-center text-white`}
+                    >
+                      {s.payment}
+                    </span>
+                  </td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">
+                    <span
+                      className={`${
+                        s.status === 'active'
+                          ? 'bg-green-500'
+                          : s.status === 'deactive'
+                          ? 'bg-red-500'
+                          : 'bg-indigo-500'
+                      } text-xs cursor-pointer font-normal px-2 py-0.5 rounded-md text-center text-white`}
+                    >
+                      {s.status}
+                    </span>
                   </td>
                   <td className="py-1.5 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">

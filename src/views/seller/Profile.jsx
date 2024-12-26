@@ -138,17 +138,27 @@ const Profile = () => {
                 </div>
                 <div className="flex gap-2 ">
                   <span className="font-semibold">Status:</span>
-                  <span>{userInfo.status}</span>
+                  <span
+                    className={`${
+                      userInfo.status === 'active'
+                        ? 'bg-green-500'
+                        : userInfo.status === 'deactive'
+                        ? 'bg-red-500'
+                        : 'bg-indigo-500'
+                    } text-xs cursor-pointer font-normal px-2 py-0.5 rounded-md text-center text-white`}
+                  >
+                    {userInfo.status}
+                  </span>
                 </div>
                 <div className="flex gap-2 ">
                   <span className="font-semibold">Payment Acount:</span>
                   <p>
-                    {userInfo.status === 'active' ? (
-                      <span className="bg-green-500 text-xs cursor-pointer font-normal ml-2 px-2 py-0.5 rounded-md text-white">
+                    {userInfo.payment === 'active' ? (
+                      <span className="bg-green-500 text-xs cursor-pointer font-norma px-2 py-0.5 rounded-md text-white">
                         {userInfo.payment}
                       </span>
                     ) : (
-                      <span className="bg-blue-500 text-xs cursor-pointer font-normal ml-2 px-2 py-0.5 rounded-md shadow-md text-white">
+                      <span className="bg-blue-500 text-xs cursor-pointer font-normal px-2 py-1 rounded-md shadow-md text-white">
                         Click Active
                       </span>
                     )}

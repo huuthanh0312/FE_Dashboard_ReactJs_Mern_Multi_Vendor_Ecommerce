@@ -62,49 +62,71 @@ const SellerDetails = () => {
             <ClipLoader color="#4A90E2" size={30} />
           </div>
         )}
-        <div className="w-full md:w-7/12 text-[#383737] px-0 md:pr-5 shadow-lg hover:shadow-indigo-200">
-          <div className="flex text-lg uppercase font-bold p-1 border-b-2 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
-            <h2>Basic Info</h2>
-          </div>
-          <div className="flex rounded-b-md shadow-md">
-            <div className="flex justify-center items-center md:items-start md:pt-6 pl-4 md:py-4 lg:pr-5 ">
-              <img
-                src={seller?.image ? seller?.image : 'http://localhost:3000/images/no_image.jpg'}
-                className="w-[100px] sm:w-[120px] md:w-[150px] h-auto rounded-md shadow-lg shadow-gray-800"
-                alt=""
-              />
+        <div className="w-full md:w-7/12 text-[#383737] px-0 md:pr-5 ">
+          <div className="w-full shadow-md rounded-md hover:shadow-indigo-200">
+            <div className="flex text-lg uppercase font-bold p-1 border-b-2 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md ">
+              <h2>Basic Info</h2>
             </div>
-            <div className="flex flex-col text-sm gap-2 py-4 px-2 sm:p-5 font-bold md:h-[200px]  ">
-              <div className="flex gap-2 ">
-                <span>Name: </span>
-                <span>{seller?.name}</span>
+            <div className="flex rounded-b-md ">
+              <div className="flex justify-center items-center md:items-start md:pt-6 pl-4 md:py-4 lg:pr-5 ">
+                <img
+                  src={seller?.image ? seller?.image : 'http://localhost:3000/images/no_image.jpg'}
+                  className="w-[100px] sm:w-[120px] md:w-[150px] h-auto rounded-md shadow shadow-gray-600"
+                  alt=""
+                />
               </div>
-              <div className="flex gap-2 ">
-                <span>Email: </span>
-                <span>{seller?.email}</span>
-              </div>
-              <div className="flex gap-2 ">
-                <span>Role: </span>
-                <span>{seller?.role}</span>
-              </div>
-              <div className="flex gap-2">
-                <span>Status: </span>
-                <span>{seller?.status}</span>
-              </div>
-              <div className="flex gap-2 ">
-                <span>Payment Status: </span>
-                <span>{seller?.payment}</span>
+              <div className="flex flex-col text-sm gap-2 py-4 px-2 sm:p-5 font-bold md:h-[200px]  ">
+                <div className="flex gap-2 ">
+                  <span>Name: </span>
+                  <span>{seller?.name}</span>
+                </div>
+                <div className="flex gap-2 ">
+                  <span>Email: </span>
+                  <span>{seller?.email}</span>
+                </div>
+                <div className="flex gap-2 ">
+                  <span>Role: </span>
+                  <span>{seller?.role}</span>
+                </div>
+                <div className="flex gap-2">
+                  <span>Status: </span>
+                  <span
+                    className={`${
+                      seller?.status === 'active'
+                        ? 'bg-green-500'
+                        : seller?.status === 'deactive'
+                        ? 'bg-red-500'
+                        : 'bg-indigo-500'
+                    } text-xs cursor-pointer font-normal px-2 py-0.5 rounded-md text-center text-white`}
+                  >
+                    {seller?.status}
+                  </span>
+                </div>
+                <div className="flex gap-2 ">
+                  <span>Payment Status: </span>
+                  <span
+                    className={`${
+                      seller?.payment === 'active'
+                        ? 'bg-green-500'
+                        : seller?.payment === 'inactive'
+                        ? 'bg-red-500'
+                        : 'bg-indigo-500'
+                    } text-xs cursor-pointer font-normal px-2 py-0.5 rounded-md text-center text-white`}
+                  >
+                    {seller?.payment}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
         {/* end */}
         {/*  */}
-        <div className="w-full md:w-5/12 mt-5 md:mt-0 text-[#383737] px-0 shadow-lg hover:shadow-indigo-200">
+        <div className="w-full md:w-5/12 mt-5 md:mt-0 text-[#383737] px-0 rounded-md shadow-md hover:shadow-indigo-200">
           <div className="flex text-lg p-1 font-bold uppercase border-b-2 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
             <h2>Address</h2>
           </div>
-          <div className="flex flex-col text-sm justify-items-center gap-2 border p-4 rounded-b-md font-bold md:h-[200px] shadow-md ">
+          <div className="flex flex-col text-sm justify-items-center gap-2 border p-4 rounded-b-md font-bold md:h-[200px]">
             <div className="flex gap-2  ">
               <span>Shop Name: </span>
               <span>{seller?.shopInfo ? seller?.shopInfo?.shopName : 'No Data'}</span>
@@ -128,19 +150,15 @@ const SellerDetails = () => {
           <form onSubmit={submitStatus}>
             <div className="flex gap-4 py-3">
               <select
-                value={status}
+                value={seller?.status || ''}
                 onChange={(e) => setStatus(e.target.value)}
                 name=""
                 id=""
                 className="px-1 font-semibold border-2 my-2 outline-none bg-[#E5E5E5] border-blue-700 rounded-md text-center focus:border-blue-500"
               >
-                <option value="">--Select Status--</option>
-                <option value="active" selected={seller?.status === 'active'}>
-                  Active
-                </option>
-                <option value="deactive" selected={seller?.status === 'deactive'}>
-                  Deactive
-                </option>
+                <option value="">-- Select Status --</option>
+                <option value="active">Active</option>
+                <option value="deactive">Deactive</option>
               </select>
 
               <button
