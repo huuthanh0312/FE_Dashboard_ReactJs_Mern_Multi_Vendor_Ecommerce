@@ -62,7 +62,9 @@ const SellerRequest = () => {
                 <th className="py-3 px-4" scope="col">
                   No
                 </th>
-
+                <th className="py-3 px-4" scope="col">
+                  Image
+                </th>
                 <th className="py-3 px-4" scope="col">
                   Name
                 </th>
@@ -84,13 +86,20 @@ const SellerRequest = () => {
             <tbody>
               {sellers.map((d, i) => (
                 <tr key={i} className="hover:bg-gray-100 border">
-                  <td className="py-1 px-4 font-medium whitespace-nowrap">{i + 1}</td>
-                  <td className="py-1 px-4 font-medium whitespace-nowrap">{d.name}</td>
-                  <td className="py-1 px-4 font-medium whitespace-nowrap">{d.email}</td>
-                  <td className="py-1 px-4 font-medium whitespace-nowrap">{d.payment}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{i + 1}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">
+                    <img
+                      className="w-[40px] h-[40px] rounded-full"
+                      src={d.image ? d.image : '/images/no_user_images.png'}
+                      alt=""
+                    />
+                  </td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.name}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.email}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.payment}</td>
 
-                  <td className="py-1 px-4 font-medium whitespace-nowrap">{d.status}</td>
-                  <td className="py-1 px-4 whitespace-nowrap">
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.status}</td>
+                  <td className="py-1.5 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">
                       <Link
                         to={`/admin/seller/details/${d._id}`}
@@ -107,22 +116,21 @@ const SellerRequest = () => {
         </div>
         {/* end table */}
         {/* Paginantion */}
-        <div className="flex w-full justify-between items-center mt-2 ">
+        <div className="flex w-full justify-between items-center mt-3">
           <span className="text-sm text-gray-700 dark:text-gray-400">
-            Showing <span className="font-semibold text-[#383737]">{currentPage}</span>
-            to {parPage}
-            <span className="font-semibold text-[#383737]"> 10</span> of
-            <span className="font-semibold text-[#383737]"> 100</span> Entries
+            Showing{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">{currentPage}</span> to{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">{parPage}</span> of{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">{totalSeller}</span>{' '}
+            Entries
           </span>
-          {totalSeller <= parPage ? (
-            ''
-          ) : (
+          {totalSeller > parPage && (
             <Pagination
               pageNumber={currentPage}
               setPageNumber={setCurrentPage}
               totalItem={totalSeller}
               parPage={parPage}
-              showItem={3}
+              showItem={Math.floor(totalSeller / parPage)}
             />
           )}
         </div>

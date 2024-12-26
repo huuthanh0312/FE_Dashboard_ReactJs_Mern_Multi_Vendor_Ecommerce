@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaList } from 'react-icons/fa'
+import { FaList, FaSearch } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 
 const Header = ({ showSidebar, setShowSidebar }) => {
@@ -40,12 +40,15 @@ const Header = ({ showSidebar, setShowSidebar }) => {
           </span>
         </div>
         {/* search */}
-        <div className="hidden md:block">
+        <div className="hidden md:block relative">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <FaSearch className="w-4 h-4 text-gray-500" />
+          </div>
           <input
             type="text"
-            className="px-3 py-1.5 outline-none border shadow-sm bg-transparent rounded-md text-gray-600 border-gray-400 focus:border-indigo-300 overflow-hidden"
+            className="ps-10 p-1.5 outline-none focus:border-b border-blue-500  bg-transparent text-gray-600 overflow-hidden font-semibold"
             name="search"
-            placeholder="search"
+            placeholder="Search..."
           />
         </div>
         {/*  */}
@@ -57,7 +60,9 @@ const Header = ({ showSidebar, setShowSidebar }) => {
                 <span className="text-[14px] w-full font-normal">{userInfo.role}</span>
               </div>
               <img
-                className="w-[45px] h-[45px] p-[2px] border-2 border-blue-700 rounded-full"
+                className={`${
+                  sticky ? 'w-[45px] h-[45px]' : 'w-[40px] h-[40px]'
+                } p-[2px] border-2 border-blue-700 rounded-full`}
                 src={
                   userInfo.image
                     ? userInfo.image

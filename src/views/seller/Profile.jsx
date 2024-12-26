@@ -92,9 +92,9 @@ const Profile = () => {
               {userInfo?.image ? (
                 <label
                   htmlFor="img"
-                  className="h-[180px] w-[200px] rounded-md shadow-lg cursor-pointer relative overflow-hidden hover:shadow-indigo-200 hover:scale-105"
+                  className="w-[200px] rounded-md shadow-lg cursor-pointer relative overflow-hidden hover:shadow-indigo-200 "
                 >
-                  <img src={userInfo.image} alt="" />
+                  <img src={userInfo.image} alt="" className="object-contain " />
                   {loader && (
                     <div className="bg-slate-300 absolute top-0 left-0 pl-2 w-full h-full flex justify-center items-center opacity-50 z-20">
                       <FadeLoader />
@@ -120,8 +120,8 @@ const Profile = () => {
               <input onChange={addProfileImage} type="file" className="hidden" id="img" />
             </div>
             <div className="px-1 sm:px-2 py-2">
-              <div className="flex justify-between text-sm flex-col gap-2 p-4 bg-[#e5e5e5] rounded-md hover:shadow-lg relative ">
-                <span className="p-[4px] top-2 right-2 border-2 border-yellow-500 rounded-md shadow-lg shadow-yellow-700 hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110 absolute">
+              <div className="flex justify-between text-sm flex-col gap-2 p-4 bg-[#e5e5e5] rounded-md relative ">
+                <span className="p-[4px] top-2 right-2 border-2 border-yellow-500 rounded-md shadow-lg hover:shadow-yellow-500/50 hover:text-yellow-600 hover:scale-105 absolute">
                   <FaRegEdit size={18} />
                 </span>
                 <div className="flex gap-2 ">
@@ -159,8 +159,8 @@ const Profile = () => {
             <div className="px-1 sm:px-2 py-2 ">
               {/* logic : if different userInfo show form and opposite */}
               {userInfo?.shopInfo ? (
-                <div className="flex justify-between text-sm flex-col gap-2 p-4 bg-[#e5e5e5] rounded-md hover:shadow-lg relative ">
-                  <span className="p-[4px] top-2 right-2 border-2 border-yellow-500 rounded-md shadow-lg shadow-yellow-700 hover:text-yellow-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110 absolute">
+                <div className="flex justify-between text-sm flex-col gap-2 p-4 bg-[#e5e5e5] rounded-md relative ">
+                  <span className="p-[4px] top-2 right-2 border-2 border-yellow-500 rounded-md shadow-lg hover:shadow-yellow-500/50 hover:text-yellow-600 hover:scale-105 absolute">
                     <FaRegEdit size={18} />
                   </span>
                   <div className="flex gap-2 ">
@@ -266,7 +266,7 @@ const Profile = () => {
                   <ClipLoader color="#4A90E2" size={50} />
                 </div>
               )}
-              <div className="flex text-lg p-2 font-bold uppercase border-b-2 border-blue-700 justify-center items-center bg-[#E5E5E5] rounded-t-md">
+              <div className="flex text-lg p-2 font-bold uppercase  justify-center items-center bg-[#E5E5E5]">
                 <h2>Change Password</h2>
               </div>
 

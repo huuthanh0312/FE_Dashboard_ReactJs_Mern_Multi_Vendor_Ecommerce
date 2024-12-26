@@ -96,7 +96,7 @@ const SellerDashboard = () => {
       <div className="px-2 pb-6 md:px-5">
         {/*  */}
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-3xl font-bold">$3434</h2>
               <span className="text-md font-medium">Total Sale</span>
@@ -105,7 +105,7 @@ const SellerDashboard = () => {
               <MdCurrencyExchange size="26px" />
             </div>
           </div>
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-3xl font-bold">50</h2>
               <span className="text-md font-medium">Products</span>
@@ -115,7 +115,7 @@ const SellerDashboard = () => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-3xl font-bold">100</h2>
               <span className="text-md font-medium">Orders</span>
@@ -125,7 +125,7 @@ const SellerDashboard = () => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-3xl font-bold">4</h2>
               <span className="text-md font-medium">Pending Orders</span>

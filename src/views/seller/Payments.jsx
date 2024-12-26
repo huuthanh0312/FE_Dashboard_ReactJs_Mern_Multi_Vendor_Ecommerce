@@ -62,7 +62,7 @@ const Payments = () => {
         {/* End Breadcrumbs  */}
         {/*  */}
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-2xl font-bold">$3434</h2>
               <span className="text-sm font-medium">Total Sale</span>
@@ -71,7 +71,7 @@ const Payments = () => {
               <MdCurrencyExchange size="26px" />
             </div>
           </div>
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-2xl font-bold">$5067</h2>
               <span className="text-sm font-medium">Available Amount</span>
@@ -81,7 +81,7 @@ const Payments = () => {
             </div>
           </div>
           {/*  */}
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-2xl font-bold">$1006</h2>
               <span className="text-sm font-medium">WithDrawal Amount</span>
@@ -91,7 +91,7 @@ const Payments = () => {
             </div>
           </div>
           {/*  */}
-          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg md:hover:scale-105 hover:shadow-indigo-200">
+          <div className="flex justify-between items-center p-5 bg-white rounded-md gap-3 shadow-lg hover:shadow-indigo-200">
             <div className="flex flex-col justify-start items-start text-[#383737]">
               <h2 className="text-2xl font-bold">$48</h2>
               <span className="text-sm font-medium">Pending Amount</span>
@@ -104,16 +104,16 @@ const Payments = () => {
         {/*  */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 py-5 gap-5 ">
           <div className="p-5 bg-white shadow-lg rounded-md text-[#383737] hover:shadow-indigo-200">
-            <div className=" text-lg font-semibold">
+            <div className="text-lg font-semibold">
               <h2>Send Request</h2>
             </div>
-            <div className="py-4">
+            <div className="py-2 border-b">
               <form>
                 <div className="flex gap-3">
                   <input
                     type="text"
                     min={0}
-                    className="px-3 py-1.5 w-full border border-blue-900 hover:border-indigo-500 focus:border-indigo-500 outline-none rounded-md shadow-lg text-[#383737]"
+                    className="px-3 py-1 w-full border border-blue-900 hover:border-indigo-500 focus:border-indigo-500 outline-none rounded-md focus:shadow-lg text-[#383737]"
                     name="amount"
                     placeholder="Search"
                   />
@@ -124,7 +124,7 @@ const Payments = () => {
               </form>
             </div>
             <div className="w-full">
-              <div className=" text-lg font-semibold">
+              <div className="text-lg font-semibold pt-2">
                 <h2>Pending Request</h2>
               </div>
               <div className="w-full overflow-x-auto py-4">
@@ -151,10 +151,9 @@ const Payments = () => {
           </div>
           {/*  */}
           <div className="p-5 bg-white shadow-lg rounded-md text-[#383737] hover:shadow-indigo-200">
-            <div className=" text-lg font-semibold">
+            <div className=" text-lg font-semibold border-b pb-2">
               <h2>Success WithDrawal</h2>
             </div>
-
             <div className="w-full py-4">
               <div className="w-full overflow-x-auto">
                 <div className="flex bg-[#E5E5E5] uppercase text-sm font-bold min-w-[340px] border">

@@ -1,15 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import { FaEdit, FaEye, FaHome, FaImage, FaTrash } from 'react-icons/fa'
 import { IoIosArrowForward, IoMdCloseCircle } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDeactiveSellers } from '../../store/Reducers/sellerReducer'
+import Search from '../components/Search'
 
 const DeactiveSellers = () => {
+  const dispatch = useDispatch()
+  const { loader, errorMessage, successMessage, sellers, totalSeller } = useSelector(
+    (state) => state.seller
+  )
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [searchValue, setsearchValue] = useState('')
   const [parPage, setParPage] = useState(5)
   const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    // object
+    const obj = {
+      parPage: parseInt(parPage),
+      page: parseInt(currentPage),
+      searchValue
+    }
+    dispatch(getDeactiveSellers(obj))
+  }, [currentPage, searchValue, parPage])
   return (
     <div className="px-2 md:px-5 pb-5">
       {/*  Breadcrumbs */}
@@ -33,23 +50,8 @@ const DeactiveSellers = () => {
       </div>
       {/* End Breadcrumbs */}
       <div className="w-full p-5 rounded-md shadow-md hover:shadow-indigo-200 bg-white">
-        <div className="flex justify-between items-center">
-          <select
-            onChange={(e) => {
-              setParPage(parseInt(e.target.value))
-            }}
-            className="px-4 py-2 hover:border-indigo-500 outline-none border border-gray-400 rounded-md text-black shadow-md focus:shadow-indigo-200"
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-          <input
-            type="text"
-            className="px-4 py-2 hover:border-indigo-500 focus:border-indigo-500 outline-none text-[#383737] border border-gray-400 rounded-md shadow-md focus:shadow-indigo-200"
-            placeholder="search"
-          />
-        </div>
+        {/* search */}
+        <Search setParPage={setParPage} setSearchValue={setsearchValue} searchValue={searchValue} />
         {/* table */}
         <div className="relative overflow-x-auto pt-4 ">
           <table className="w-full text-sm text-left rounded-md shadow-md">
@@ -80,34 +82,27 @@ const DeactiveSellers = () => {
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5].map((d, i) => (
-                <tr className="hover:bg-gray-100 border">
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    {d}
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
+              {sellers.map((d, i) => (
+                <tr key={i} className="hover:bg-gray-100 border">
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{i + 1}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">
                     <img
-                      className="w-[45px] h-[45px]"
-                      src={`http://localhost:3000/images/category/${d}.jpg`}
+                      className="w-[40px] h-[40px] rounded-full"
+                      src={d.image ? d.image : '/images/no_user_images.png'}
                       alt=""
                     />
                   </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    huuthanh
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    huuthanh@gmail.com
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Active
-                  </td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.name}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.email}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.payment}</td>
 
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Deactive
-                  </td>
-                  <td scope="row" className="py-1 px-4 whitespace-nowrap">
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{d.status}</td>
+                  <td className="py-1.5 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">
-                      <Link className="p-[6px] bg-gray-100 border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110">
+                      <Link
+                        to={`/admin/seller/details/${d._id}`}
+                        className="p-[6px] bg-gray-100 border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110"
+                      >
                         <FaEye></FaEye>
                       </Link>
                     </div>
@@ -119,19 +114,23 @@ const DeactiveSellers = () => {
         </div>
         {/* end table */}
         {/* Paginantion */}
-        <div className="flex w-full justify-between items-center mt-2 ">
+        <div className="flex w-full justify-between items-center mt-3">
           <span className="text-sm text-gray-700 dark:text-gray-400">
-            Showing <span className="font-semibold text-gray-900 dark:text-white">1</span> to{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">10</span> of{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">100</span> Entries
+            Showing{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">{currentPage}</span> to{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">{parPage}</span> of{' '}
+            <span className="font-semibold text-gray-900 dark:text-white">{totalSeller}</span>{' '}
+            Entries
           </span>
-          <Pagination
-            pageNumber={currentPage}
-            setPageNumber={setCurrentPage}
-            totalItem={50}
-            parPage={parPage}
-            showItem={3}
-          />
+          {totalSeller > parPage && (
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={totalSeller}
+              parPage={parPage}
+              showItem={Math.floor(totalSeller / parPage)}
+            />
+          )}
         </div>
         {/* end Paginantion */}
       </div>

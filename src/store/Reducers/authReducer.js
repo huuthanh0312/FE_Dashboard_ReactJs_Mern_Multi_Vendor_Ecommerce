@@ -79,6 +79,26 @@ const returnRole = (token) => {
   }
 }
 
+//end method
+
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async ({ navigate, role }, { rejectWithValue, fulfillWithValue }) => {
+    //console.log(info);
+    try {
+      const { data } = await api.get('/logout', { withCredentials: true })
+      //setup localStorage
+      localStorage.removeItem('accessToken')
+      if (role === 'admin') {
+        navigate('/admin/login')
+      } else if (role === 'seller') {
+        navigate('/login')
+      }
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)
 //update Profile Image By Id
 export const uploadSellerProfileImage = createAsyncThunk(
   'auth/uploadSellerProfileImage',

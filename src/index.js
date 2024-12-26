@@ -7,6 +7,7 @@ import './index.css'
 import store from './store/index'
 import { Toaster } from 'react-hot-toast'
 import { nProgressConfig } from './utils/nProgressConfig'
+import { HashLoader } from 'react-spinners'
 
 const App = lazy(() => import('./App'))
 
@@ -20,7 +21,11 @@ const SuspenseFallback = () => {
       nProgressConfig.done() // End loading bar when component is mounted
     }
   }, [])
-  return null
+  return (
+    <div className="w-full h-screen flex justify-center items-center bg-gray-100">
+      <HashLoader size={40} color="#f77001" className=" items-center justify-center" />
+    </div>
+  )
 }
 
 root.render(
