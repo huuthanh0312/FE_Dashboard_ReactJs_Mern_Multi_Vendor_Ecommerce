@@ -21,10 +21,9 @@ const Header = ({ showSidebar, setShowSidebar }) => {
     }
   }, [])
   return (
-    //fixed top-0 left-0 w-full
     <div
-      className={`fixed top-0 left-0 w-full z-20 mx-auto transition-all duration-300 
-						${sticky ? 'p-[7px] shadow-lg  bg-white hover:shadow-indigo-200' : 'py-2 px-2 md:px-5 '}`}
+      className={`fixed top-0 left-0 w-full z-20 mx-auto transition-all duration-300 ease-in-out
+						${sticky ? 'p-[7px] shadow-md bg-white hover:shadow-indigo-200' : 'py-2 px-2 md:px-5 '}`}
     >
       <div
         className={`ml-0 lg:ml-[260px] h-[55px] flex justify-between items-center bg-white px-5 transition-all  ${
@@ -46,7 +45,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
           </div>
           <input
             type="text"
-            className="ps-10 p-1.5 outline-none focus:border-b border-blue-500  bg-transparent text-gray-600 overflow-hidden font-semibold"
+            className="ps-10 p-1.5 outline-none focus:border-b border-blue-500  bg-transparent text-gray-600 overflow-hidden"
             name="search"
             placeholder="Search..."
           />

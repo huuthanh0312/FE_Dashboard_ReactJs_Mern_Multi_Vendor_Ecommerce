@@ -136,7 +136,7 @@ const SellerDashboard = () => {
           </div>
         </div>
         {/*  */}
-        <div className="w-full flex flex-wrap py-6 ">
+        <div className="w-full flex flex-wrap py-5 ">
           <div className="w-full lg:w-7/12 lg:pr-5 ">
             <div className="w-full h-full bg-white p-4 shadow-lg rounded-md hover:shadow-indigo-200">
               <Chart options={state.options} series={state.series} type="bar" height={360} />
@@ -186,7 +186,7 @@ const SellerDashboard = () => {
                       </div>
                     </div>
                   </li>
-                  <li className="mb-3 ml-6">
+                  <li className="mb-3 ml-5">
                     <div className="flex absolute -left-5 shadow-lg justify-center items-center w-10 h-10 p-[2px] bg-[#4c7fe2] rounded-full z-10">
                       <img
                         src="http://localhost:3000/images/admin.png"

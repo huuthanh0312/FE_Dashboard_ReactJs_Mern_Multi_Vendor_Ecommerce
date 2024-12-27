@@ -132,7 +132,7 @@ const Sellers = () => {
                         to={`/admin/seller/details/${s._id}`}
                         className="p-[6px] bg-gray-100 border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-yellow-500/50 hover:scale-110"
                       >
-                        <FaEye></FaEye>
+                        <FaEye />
                       </Link>
                     </div>
                   </td>
