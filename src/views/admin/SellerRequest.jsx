@@ -137,11 +137,9 @@ const SellerRequest = () => {
         {/* Paginantion */}
         <div className="flex w-full justify-between items-center mt-3">
           <span className="text-sm text-gray-700 dark:text-gray-400">
-            Showing{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">{currentPage}</span> to{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">{parPage}</span> of{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">{totalSeller}</span>{' '}
-            Entries
+            Showing <span className="font-semibold text-gray-900">{currentPage}</span> to{' '}
+            <span className="font-semibold text-gray-900">{parPage}</span> of{' '}
+            <span className="font-semibold text-gray-900">{totalSeller}</span> Entries
           </span>
           {totalSeller > parPage && (
             <Pagination

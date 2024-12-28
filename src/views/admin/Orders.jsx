@@ -117,11 +117,9 @@ const Orders = () => {
         {/* Paginantion */}
         <div className="flex w-full justify-between items-center mt-2">
           <span className="text-sm text-gray-700 dark:text-gray-400">
-            Showing{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">{currentPage}</span> to{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">{parPage}</span> of{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">{totalOrder}</span>{' '}
-            Entries
+            Showing <span className="font-semibold text-gray-900">{currentPage}</span> to{' '}
+            <span className="font-semibold text-gray-900">{parPage}</span> of{' '}
+            <span className="font-semibold text-gray-900">{totalOrder}</span> Entries
           </span>
           {totalOrder > parPage && (
             <Pagination

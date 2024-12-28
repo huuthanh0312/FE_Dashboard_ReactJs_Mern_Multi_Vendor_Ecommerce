@@ -1,16 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LuArrowDownSquare } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import { FaEdit, FaEye, FaHome, FaTrash } from 'react-icons/fa'
 import { IoIosArrowForward } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSellerOrders } from '../../store/Reducers/orderReducer'
+import Search from '../components/Search'
 
 const Orders = () => {
+  const dispatch = useDispatch()
+  const { userInfo } = useSelector((state) => state.auth)
+  const { myOrders, totalOrder } = useSelector((state) => state.order)
   //pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [searchValue, setsearchValue] = useState('')
   const [parPage, setParPage] = useState(5)
-  const [show, setShow] = useState(false)
+  console.log(currentPage, searchValue, parPage)
+  useEffect(() => {
+    // object
+    const obj = {
+      sellerId: userInfo._id,
+      parPage: parseInt(parPage),
+      page: parseInt(currentPage),
+      searchValue
+    }
+    dispatch(getSellerOrders(obj))
+  }, [currentPage, searchValue, parPage])
 
   return (
     <div className="px-2 md:px-5 pb-6 ">
@@ -38,28 +54,11 @@ const Orders = () => {
       </div>
       {/* End Breadcrumbs  */}
       <div className="w-full p-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
-        <div className="flex justify-between items-center">
-          <select
-            onChange={(e) => {
-              setParPage(parseInt(e.target.value))
-            }}
-            className="px-4 py-2 hover:border-indigo-500 outline-none border border-gray-400 rounded-md text-black shadow-md focus:shadow-indigo-200"
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-          <input
-            type="text"
-            onChange={(e) => setsearchValue(e.target.value)}
-            value={searchValue}
-            className="px-4 py-2 hover:border-indigo-500 focus:border-indigo-500 outline-none text-[#383737] border border-gray-400 rounded-md shadow-md focus:shadow-indigo-200"
-            placeholder="search"
-          />
-        </div>
+        {/* search */}
+        <Search setParPage={setParPage} setSearchValue={setsearchValue} searchValue={searchValue} />
         {/* table */}
         <div className="relative mt-5 overflow-x-auto pb-1 ">
-          <table className="w-full text-sm text-left rounded-md shadow-md">
+          <table className="w-full text-sm text-left">
             <thead className="uppercase border bg-[#E5E5E5]">
               <tr>
                 <th className="py-3 px-4" scope="col">
@@ -75,32 +74,28 @@ const Orders = () => {
                   Order Status
                 </th>
                 <th className="py-3 px-4" scope="col">
+                  Date
+                </th>
+                <th className="py-3 px-4" scope="col">
                   Action
                 </th>
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5].map((d, i) => (
-                <tr className="hover:bg-gray-100 border">
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    #343434
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    $323
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Pending
-                  </td>
-                  <td scope="row" className="py-1 px-4 font-medium whitespace-nowrap">
-                    Pending
-                  </td>
-                  <td scope="row" className="py-1 px-4 whitespace-nowrap">
+              {myOrders.map((o, i) => (
+                <tr key={i} className="hover:bg-gray-100 border">
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">#{o._id}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">${o.price}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{o.payment_status}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{o.delivery_status}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{o.date}</td>
+                  <td className="py-1.5 px-4 whitespace-nowrap">
                     <div className="flex justify-start items-center gap-4">
                       <Link
-                        to={`/seller/order/details/23`}
-                        className="p-[6px] border-2 border-green-500 rounded-md shadow-md hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 hover:scale-110"
+                        to={`/seller/order/details/${o._id}`}
+                        className="p-[6px] border-2 border-green-500 rounded-md shadow hover:text-green-600 hover:shadow-lg hover:shadow-green-500/50 active:scale-95 active:translate-y-[2px] transform transition duration-150 ease-in-out "
                       >
-                        <FaEye></FaEye>
+                        <FaEye />
                       </Link>
                     </div>
                   </td>
@@ -113,19 +108,20 @@ const Orders = () => {
         {/* Paginantion */}
         <div className="flex w-full justify-between items-center mt-2">
           <span className="text-sm text-gray-700 dark:text-gray-400">
-            Showing <span className="font-semibold text-gray-900 dark:text-white">1</span> to{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">10</span> of{' '}
-            <span className="font-semibold text-gray-900 dark:text-white">100</span> Entries
+            Showing <span className="font-semibold text-gray-900">{currentPage}</span> to{' '}
+            <span className="font-semibold text-gray-900">{parPage}</span> of{' '}
+            <span className="font-semibold text-gray-900">{totalOrder}</span> Entries
           </span>
-          <Pagination
-            pageNumber={currentPage}
-            setPageNumber={setCurrentPage}
-            totalItem={50}
-            parPage={parPage}
-            showItem={3}
-          />
+          {totalOrder > parPage && (
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={totalOrder}
+              parPage={parPage}
+              showItem={Math.floor(totalOrder / parPage)}
+            />
+          )}
         </div>
-
         {/* end Paginantion */}
       </div>
     </div>

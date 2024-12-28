@@ -22,7 +22,7 @@ const OrderDetails = () => {
 
   //
   useEffect(() => {
-    setStatus(order?.deliver_status)
+    setStatus(order?.delivery_status)
   }, [order])
   // handleStatusOrder
   // Kiểm tra và chuẩn hóa orderId
@@ -145,7 +145,7 @@ const OrderDetails = () => {
                   {/*  */}
                 </div>
               </div>
-              {/* end dave 35% */}
+              {/* end dave 40% */}
               <div className="lg:w-[60%] w-full mt-4 ml:mt-0 lg:pl-3">
                 <div className="w-full flex flex-col bg-[#eeeeee] rounded-md shadow">
                   {order?.suborders?.map((o, i) => (
@@ -187,7 +187,7 @@ const OrderDetails = () => {
                   ))}
                 </div>
               </div>
-              {/* end dave 65% */}
+              {/* end dave 60% */}
             </div>
           </div>
         </div>
