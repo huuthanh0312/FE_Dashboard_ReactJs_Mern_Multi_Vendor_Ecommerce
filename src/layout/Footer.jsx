@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="">
       <div className="w-full justify-center text-center mx-auto py-1">
         <span className="text-xs text-gray-400 ">
-          <p className="hover:underline">© {year} by ThanhNguyen™</p>
+          <p>© {year} by ThanhNguyen™</p>
         </span>
       </div>
     </footer>

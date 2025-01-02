@@ -75,7 +75,7 @@ export const getSellerOrderById = createAsyncThunk(
   'order/getSellerOrderById',
   async ({ orderId }, { rejectWithValue, fulfillWithValue }) => {
     try {
-      console.log(orderId)
+      //console.log(orderId)
       const { data } = await api.get(`/seller/orders/${orderId}`, { withCredentials: true })
       return fulfillWithValue(data)
     } catch (error) {

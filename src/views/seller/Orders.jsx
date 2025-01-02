@@ -16,7 +16,7 @@ const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [searchValue, setsearchValue] = useState('')
   const [parPage, setParPage] = useState(5)
-  console.log(currentPage, searchValue, parPage)
+  //console.log(currentPage, searchValue, parPage)
   useEffect(() => {
     // object
     const obj = {
@@ -85,8 +85,18 @@ const Orders = () => {
               {myOrders.map((o, i) => (
                 <tr key={i} className="hover:bg-gray-100 border">
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">#{o._id}</td>
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">${o.price}</td>
-                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">{o.payment_status}</td>
+                  <td className="py-1.5 px-4 font-medium whitespace-nowrap">
+                    $<span className="text-orange-500">{o.price}</span>
+                  </td>
+                  <td className="py-1.5 px-4 whitespace-nowrap">
+                    <span
+                      className={`${
+                        o.payment_status === 'paid' ? 'bg-green-500' : 'bg-red-500'
+                      } text-sm rounded-md text-white px-1.5 py-0.5`}
+                    >
+                      {o.payment_status}
+                    </span>
+                  </td>
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">{o.delivery_status}</td>
                   <td className="py-1.5 px-4 font-medium whitespace-nowrap">{o.date}</td>
                   <td className="py-1.5 px-4 whitespace-nowrap">

@@ -335,7 +335,10 @@ const AddProduct = () => {
               <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:gap-6 gap-3 w-full mb-4 pt-2">
                 {/* images show */}
                 {imageShow.map((img, i) => (
-                  <div className="h-[180px] relative rounded-md shadow-lg border sm:hover:scale-105 hover:shadow-indigo-200">
+                  <div
+                    key={i}
+                    className="h-[180px] relative rounded-md shadow-lg border sm:hover:scale-105 hover:shadow-indigo-200"
+                  >
                     <label htmlFor={i} className="flex justify-center items-center">
                       <img src={img.url} alt="" className="h-[175px] mx-auto my-auto rounded-md" />
                     </label>

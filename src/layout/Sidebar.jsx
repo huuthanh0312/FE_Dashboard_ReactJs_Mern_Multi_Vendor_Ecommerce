@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getNav } from '../navigation'
-import { FaLongArrowAltUp, FaSignOutAlt } from 'react-icons/fa'
+import { FaClosedCaptioning, FaLongArrowAltUp, FaSignOutAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import Footer from './Footer'
 import { logout } from '../store/Reducers/authReducer'
+import { MdClose } from 'react-icons/md'
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch()
@@ -41,6 +42,16 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           ${!showSidebar ? 'invisible' : 'visible'}
           w-screen h-screen bg-[#22292f89] top-0 left-0 z-20 `}
       ></div>
+      {showSidebar && (
+        <div
+          onClick={() => setShowSidebar(false)}
+          className="absolute right-1 top-1  z-[99991] hover:bg-slate-500 hover:rounded-full active:scale-95 active:translate-y-[2px] transform transition duration-150 ease-in-out"
+        >
+          <span className="text-white">
+            <MdClose size={28} />
+          </span>
+        </div>
+      )}
       <div
         className={`w-[260px] fixed bg-[#ffffff] z-[9999] top-0 h-screen flex flex-col shadow-md shadow-slate-400 transition-all
           ${showSidebar ? 'left-0' : '-left-[260px] lg:left-0'}`}

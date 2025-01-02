@@ -10,10 +10,12 @@ import {
   uploadSellerProfileImage
 } from '../../store/Reducers/authReducer'
 import toast from 'react-hot-toast'
+import { createSellerStripeConnectAccount } from '../../store/Reducers/sellerReducer'
 
 const Profile = () => {
   const dispatch = useDispatch()
   const { userInfo, loader, successMessage, errorMessage } = useSelector((state) => state.auth) //state loader
+  const { isLoadingPayment } = useSelector((state) => state.seller)
 
   //upload image profile
   const addProfileImage = (e) => {
@@ -23,7 +25,6 @@ const Profile = () => {
       dispatch(uploadSellerProfileImage(formData))
     }
   }
-
   // use Effect check toast message error
   useEffect(() => {
     if (errorMessage) {
@@ -34,7 +35,7 @@ const Profile = () => {
       toast.success(successMessage)
       dispatch(messageClear()) //message clear function reudx
     }
-  }, [errorMessage, successMessage])
+  }, [errorMessage, successMessage, dispatch])
 
   const [state, setState] = useState({
     division: '',
@@ -54,8 +55,17 @@ const Profile = () => {
     e.preventDefault()
     dispatch(changeSellerInfo(state))
   }
+
+  // Create Seller Stripe Connect Account
+
   return (
     <div className="px-2 md:px-5 pb-6 ">
+      {/* Overlay only displays when loading */}
+      {isLoadingPayment && (
+        <div className="absolute inset-0 bg-gray-50 bg-opacity-70 flex justify-center items-center z-[9999]">
+          <ClipLoader color="#4A90E2" size={50} />
+        </div>
+      )}
       {/*  Breadcrumbs */}
       <div className="flex justify-start text-center text-[#383737] font-bold items-center px-5 py-2 mb-5 bg-white rounded-md shadow-md hover:shadow-indigo-200">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -80,14 +90,14 @@ const Profile = () => {
       </div>
       {/* End Breadcrumbs  */}
       <div className="w-full flex flex-wrap ">
+        {/* Overlay only displays when loading */}
+        {loader && (
+          <div className="absolute inset-0 bg-gray-50 bg-opacity-70 flex justify-center items-center z-10">
+            <ClipLoader color="#4A90E2" size={50} />
+          </div>
+        )}
         <div className="w-full md:w-6/12 ">
           <div className="w-full p-4 bg-white rounded-md shadow-md hover:shadow-indigo-200 relative">
-            {/* Overlay only displays when loading */}
-            {loader && (
-              <div className="absolute inset-0 bg-gray-50 bg-opacity-70 flex justify-center items-center z-10">
-                <ClipLoader color="#4A90E2" size={50} />
-              </div>
-            )}
             <div className="flex justify-center items-center py-3">
               {userInfo?.image ? (
                 <label
@@ -152,17 +162,20 @@ const Profile = () => {
                 </div>
                 <div className="flex gap-2 ">
                   <span className="font-semibold">Payment Acount:</span>
-                  <p>
+                  <div>
                     {userInfo.payment === 'active' ? (
                       <span className="bg-green-500 text-xs cursor-pointer font-norma px-2 py-0.5 rounded-md text-white">
                         {userInfo.payment}
                       </span>
                     ) : (
-                      <span className="bg-blue-500 text-xs cursor-pointer font-normal px-2 py-1 rounded-md shadow-md text-white">
+                      <div
+                        onClick={() => dispatch(createSellerStripeConnectAccount())}
+                        className="bg-blue-500 text-xs cursor-pointer px-2 py-1 rounded-md shadow-md text-white active:scale-95 active:translate-y-[2px] transform transition duration-150 ease-in-out"
+                      >
                         Click Active
-                      </span>
+                      </div>
                     )}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

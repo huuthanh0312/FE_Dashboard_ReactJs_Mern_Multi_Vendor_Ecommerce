@@ -98,17 +98,18 @@ const OrderDetails = () => {
               <div className="w-full">
                 <div className="flex flex-col gap-1">
                   <h2>
-                    Deliver To : <span className="font-medium">{order.shippingInfo?.name}</span>
+                    Deliver To : <span className="font-medium">{order.shippingInfo}</span>
                   </h2>
-                  <span>
-                    {order.shippingInfo?.address} {order.shippingInfo?.province}{' '}
-                    {order.shippingInfo?.city} {order.shippingInfo?.area}
-                  </span>
+                  <span></span>
                 </div>
                 {/*  */}
                 <div className="flex justify-start items-center gap-2">
                   <h2>Payment Status: </h2>
-                  <span className="text-sm rounded-md text-white bg-blue-500 px-1.5 py-0.5">
+                  <span
+                    className={`${
+                      order.payment_status === 'paid' ? 'bg-green-500' : 'bg-red-500'
+                    } text-sm rounded-md text-white  px-1.5 py-0.5 `}
+                  >
                     {order.payment_status}
                   </span>
                 </div>
@@ -118,14 +119,18 @@ const OrderDetails = () => {
                   <p className="text-orange-500 font-semibold">${order.price}</p>
                 </div>
                 {/*  */}
-                <div className="w-full mt-4 p-2 flex flex-col justify-between items-start bg-[#eeeeee] rounded-md shadow">
+                <div className="w-full mt-4 p-2 gap-2 flex flex-col justify-between items-start bg-[#eeeeee] rounded-md shadow">
                   {order.products &&
                     order.products.map((p, i) => (
                       <div
                         key={i}
-                        className=" w-full flex gap-3 text-md items-center py-2 border-b"
+                        className=" w-full bg-white shadow rounded-md flex gap-3 text-md items-center p-2"
                       >
-                        <img className="w-[50px] h-[50px] rounded-md " src={p.images[0]} alt="" />
+                        <img
+                          className="w-[50px] h-[50px] rounded-md object-contain "
+                          src={p.images[0]}
+                          alt=""
+                        />
                         <div className="w-full">
                           <h2 className="font-semibold">{p.name}</h2>
                           <div className="flex justify-between items-start">

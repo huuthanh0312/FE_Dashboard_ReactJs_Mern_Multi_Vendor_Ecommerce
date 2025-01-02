@@ -79,12 +79,51 @@ export const getDeactiveSellers = createAsyncThunk(
 )
 //end methods
 
+// Create Seller Tripe Connect Acount
+export const createSellerStripeConnectAccount = createAsyncThunk(
+  'seller/createSellerStripeConnectAccount',
+  async (_, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const {
+        data: { url }
+      } = await api.get(`/payment/create-stripe-connect-account`, {
+        withCredentials: true
+      })
+      return fulfillWithValue(url)
+    } catch (error) {
+      throw error
+    }
+  }
+)
+//end methods
+
+// Create Seller Tripe Connect Acount
+export const activeSellerStripeConnectAccount = createAsyncThunk(
+  'seller/activeSellerStripeConnectAccount',
+  async (activeCode, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.put(
+        `/payment/active-stripe-connect-account/${activeCode}`,
+        {},
+        {
+          withCredentials: true
+        }
+      )
+      return fulfillWithValue(data)
+    } catch (error) {
+      throw error
+    }
+  }
+)
+//end methods
+
 export const sellerReducer = createSlice({
   name: 'seller',
   initialState: {
     successMessage: '',
     errorMessage: '',
     loader: false,
+    isLoadingPayment: false,
     sellers: [],
     totalSeller: 0,
     seller: ''
@@ -130,6 +169,30 @@ export const sellerReducer = createSlice({
       .addCase(getDeactiveSellers.fulfilled, (state, { payload }) => {
         state.sellers = payload.sellers
         state.totalSeller = payload.totalSeller
+      })
+      //create seller payment connect account
+      .addCase(createSellerStripeConnectAccount.pending, (state, { payload }) => {
+        state.isLoadingPayment = true
+      })
+      .addCase(createSellerStripeConnectAccount.rejected, (state, { payload }) => {
+        state.isLoadingPayment = false
+        state.errorMessage = 'Create Payment Faild'
+      })
+      .addCase(createSellerStripeConnectAccount.fulfilled, (state, { payload }) => {
+        window.location.href = payload
+        state.isLoadingPayment = false
+      })
+      // active seller payment connect account
+      .addCase(activeSellerStripeConnectAccount.pending, (state, { payload }) => {
+        state.loader = true
+      })
+      .addCase(activeSellerStripeConnectAccount.rejected, (state, { payload }) => {
+        state.loader = false
+        state.errorMessage = payload.message
+      })
+      .addCase(activeSellerStripeConnectAccount.fulfilled, (state, { payload }) => {
+        state.loader = false
+        state.successMessage = payload.message
       })
   }
 })
